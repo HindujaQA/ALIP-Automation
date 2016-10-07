@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ALIP  - Details Test Suite" >
+	
+	<listeners>
+		<listener class-name="com.alip.selenium.util.TestScriptListener"/>	
+		 <listener class-name="com.alip.selenium.util.RetryListener"/>
+		
+	</listeners>
+	
+  <test name="SetUp Scripts" >
+  	<classes>  
+    	<class name="com.alip.selenium.pages.tests.initializeStop"/>
+   	</classes>  
+  </test> <!-- Test -->
+  	
+  
+  <test name="TestLogin" >
+  	<classes>
+    	<class name="com.alip.selenium.pages.tests.TestLogin">
+        	<methods>
+        	    
+      			<include name="checkLogin"/>
+      			  		 		
+      		</methods>
+      	</class> <!--com.alip.selenium.pages.tests.TestLogin -->       
+   	</classes> 
+  </test> <!-- TestLogin -->
+   
+   <test name="TestResource_Request_Form " >
+  	<classes>
+    	<class name="com.alip.selenium.pages.tests.TestResource_Request_Form">
+        	<methods>
+      			<include name="CreateRRF"/>
+      			  		 		
+      		</methods>
+      	</class> <!--com.alip.selenium.pages.tests.TestResource_Request_Form  -->       
+   	</classes> 
+  </test> <!-- TestResource_Request_Form -->
+
+</suite> <!-- Suite -->
