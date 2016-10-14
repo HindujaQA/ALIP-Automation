@@ -33,6 +33,7 @@ public class ProjecttollgatElem {
 	public static final String SUBMIT = ".submitBtn[ng-show='showSubmitBtn']";
 	public static final String MODERATION_STATUS = ".pending-msg .moderationStatus";
 	public static final String MODERATION_STATUS_TXT = "pending for sponsor approval";
+	public static final String MODERATION_APPROVED_TXT = "Approved";
 	public static final String PREV = ".prevPageBtn[ng-show='showPreviousBtn']";
 	public static final String NEXT = ".NextpageBtn[ng-show='showNextBtn']";
 }

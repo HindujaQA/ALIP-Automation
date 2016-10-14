@@ -6,13 +6,4 @@
       <class name="com.alip.selenium.pages.tests.TestCreateProject"/>
     </classes>
   </test> <!-- Default test -->
-  <test name="Default test(failed)">
-    <classes>
-      <class name="com.alip.selenium.pages.tests.TestCreateProject">
-        <methods>
-          <include name="APSCreateProj"/>
-        </methods>
-      </class> <!-- com.alip.selenium.pages.tests.TestCreateProject -->
-    </classes>
-  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

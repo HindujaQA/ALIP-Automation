@@ -21,12 +21,33 @@ import com.alip.selenium.po.elements.ReadData;
 public class ProjectTollGate extends page {
 	ReadData rd= new ReadData();
 	
+	
+	public ObservationPage NavTollToObservation() {
+		
+    	page.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ProjecttollgatElem.MODERATION_STATUS)));
+       	String ActualSuccessMsg=FindByCssSelector(ProjecttollgatElem.MODERATION_STATUS).getText();
+    	System.out.println("ActualSuccessMsg :"+ActualSuccessMsg);
+		Assert.assertEquals(ActualSuccessMsg.toUpperCase().trim(), ProjecttollgatElem.MODERATION_APPROVED_TXT.toUpperCase().trim());
+		FindByCssSelector(ProjecttollgatElem.NEXT).click();
+		page.wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ObservationProjectElem.OBSERVATION_FORM)));
+		return new ObservationPage();
+		}
+public void NavTollToRegisteration() {
+		
+    	page.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ProjecttollgatElem.MODERATION_STATUS)));
+       	String ActualSuccessMsg=FindByCssSelector(ProjecttollgatElem.MODERATION_STATUS).getText();
+    	System.out.println("ActualSuccessMsg :"+ActualSuccessMsg);
+		Assert.assertEquals(ActualSuccessMsg.toUpperCase().trim(), ProjecttollgatElem.MODERATION_APPROVED_TXT.toUpperCase().trim());
+		FindByCssSelector(ProjecttollgatElem.PREV).click();
+		
+		}
+	
 	public void CreatTollGate() throws Exception{
 		int RowCnt=testExcel.getRowCount("Toll");
     	System.out.println("TollRowCnt :"+RowCnt);
     	for(int j=2;j<=RowCnt;j++){
     		System.out.println("TollRowCnt J :"+j);
-    		TollGate(rd.ReadMilestones(j),rd.ReadRYG(j),rd.ReadRemarks(j));
+    		Proj_TollGate(rd.ReadMilestones(j),rd.ReadRYG(j),rd.ReadRemarks(j));
     	}
     	FindByCssSelector(ProjecttollgatElem.SUBMIT).click();
     	page.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ProjecttollgatElem.MODERATION_STATUS)));
@@ -38,44 +59,9 @@ public class ProjectTollGate extends page {
 		
 	}
 	 
-	public void TollGate(String KeyMiles, String RYG,String Remarks) throws Exception{
-	/*	int RowCnt=testExcel.getRowCount("Role");
-    	System.out.println("RowCnt :"+RowCnt);*/
+	public void Proj_TollGate(String KeyMiles, String RYG,String Remarks) throws Exception{
 		
-		page.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ProjecttollgatElem.TABLE)));
-		List tableRow=page.driver.findElements(By.cssSelector(ProjecttollgatElem.TABLE_SNO));
-		int tableRowCnt=tableRow.size();
-		System.out.println("tableRowCnt "+tableRowCnt);
-		for(int i=1;i<=tableRowCnt;i++){
-			String actualKeyMiles=FindByCssSelector(ProjecttollgatElem.TABLE_KMILESTONE_1+i+ProjecttollgatElem.TABLE_KMILESTONE_2).getText();
-			actualKeyMiles=actualKeyMiles.replaceAll("[^A-Za-z1-9]", "").toUpperCase().trim();
-			KeyMiles=KeyMiles.replaceAll("[^A-Za-z1-9]", "").toUpperCase();
-			System.out.println("Expected KeyMiles "+KeyMiles+" Actual "+actualKeyMiles);
-			if (KeyMiles.equalsIgnoreCase(actualKeyMiles)){
-				RYG=RYG.toUpperCase();
-				switch (RYG) {
-				
-				case "RED":
-					
-					FindByCssSelector(ProjecttollgatElem.TABLE_RYG_STATUS_1+i+ProjecttollgatElem.TABLE_RYG_STATUS_RED).click();
-					FindByCssSelector(ProjecttollgatElem.TABLE_REMARKS_1+i+ProjecttollgatElem.TABLE_REMARKS_2).sendKeys(Remarks);
-					break;
-				case "YELLOW":
-					FindByCssSelector(ProjecttollgatElem.TABLE_RYG_STATUS_1+i+ProjecttollgatElem.TABLE_RYG_STATUS_YELLOW).click();
-					FindByCssSelector(ProjecttollgatElem.TABLE_REMARKS_1+i+ProjecttollgatElem.TABLE_REMARKS_2).sendKeys(Remarks);
-					break;
-				case "GREEN":
-					FindByCssSelector(ProjecttollgatElem.TABLE_RYG_STATUS_1+i+ProjecttollgatElem.TABLE_RYG_STATUS_GREEN).click();
-					FindByCssSelector(ProjecttollgatElem.TABLE_REMARKS_1+i+ProjecttollgatElem.TABLE_REMARKS_2).sendKeys(Remarks);
-					break;
-
-				default:
-					break;
-				}
-				break;
-				
-			}
-		}
-    	}
+		TollGate( KeyMiles,  RYG, Remarks) ;
+	}
 	}
 

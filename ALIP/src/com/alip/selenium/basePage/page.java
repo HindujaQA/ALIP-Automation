@@ -35,6 +35,7 @@ import org.testng.Reporter;
 import com.alip.selenium.po.elements.CreateProjectElem;
 import com.alip.selenium.po.elements.DashBoardElem;
 import com.alip.selenium.po.elements.LoginElem;
+import com.alip.selenium.po.elements.ProjecttollgatElem;
 import com.alip.selenium.po.elements.ReadData;
 import com.alip.selenium.util.ReadExcel;
 import com.alip.selenium.util.TestScriptListener;
@@ -1369,7 +1370,7 @@ public class page extends TestScriptListener {
 			
 			public void txtbox(String Elemloc,String txt)
 			{
-
+				
 				FindByCssSelector(Elemloc).sendKeys(txt);
 			}
 		    
@@ -1389,7 +1390,7 @@ public class page extends TestScriptListener {
 		        dropdown.selectByVisibleText(Value);
 		    }
 		    public void AutoSuggest(String Locator,String ValLocator,String ValLocator_1, String  Exp_Value, String Exp_Value_1, String Exp_Value_2) throws InterruptedException{
-		    	page.driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		    	//page.driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		    	wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(Locator)));
 		    	FindByCssSelector(Locator).clear();
 		    	FindByCssSelector(Locator).click();
@@ -1438,5 +1439,46 @@ public class page extends TestScriptListener {
 			   wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(LoginElem.LOGIN)));   
 			   
 		    }
+		    
+		    
+			public void TollGate(String KeyMiles, String RYG,String Remarks) throws Exception{
+				/*	int RowCnt=testExcel.getRowCount("Role");
+			    	System.out.println("RowCnt :"+RowCnt);*/
+					
+					page.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ProjecttollgatElem.TABLE)));
+					List tableRow=page.driver.findElements(By.cssSelector(ProjecttollgatElem.TABLE_SNO));
+					int tableRowCnt=tableRow.size();
+					System.out.println("tableRowCnt "+tableRowCnt);
+					for(int i=1;i<=tableRowCnt;i++){
+						String actualKeyMiles=FindByCssSelector(ProjecttollgatElem.TABLE_KMILESTONE_1+i+ProjecttollgatElem.TABLE_KMILESTONE_2).getText();
+						actualKeyMiles=actualKeyMiles.replaceAll("[^A-Za-z1-9]", "").toUpperCase().trim();
+						KeyMiles=KeyMiles.replaceAll("[^A-Za-z1-9]", "").toUpperCase();
+						System.out.println("Expected KeyMiles "+KeyMiles+" Actual "+actualKeyMiles);
+						if (KeyMiles.equalsIgnoreCase(actualKeyMiles)){
+							RYG=RYG.toUpperCase();
+							switch (RYG) {
+							
+							case "RED":
+								
+								FindByCssSelector(ProjecttollgatElem.TABLE_RYG_STATUS_1+i+ProjecttollgatElem.TABLE_RYG_STATUS_RED).click();
+								FindByCssSelector(ProjecttollgatElem.TABLE_REMARKS_1+i+ProjecttollgatElem.TABLE_REMARKS_2).sendKeys(Remarks);
+								break;
+							case "YELLOW":
+								FindByCssSelector(ProjecttollgatElem.TABLE_RYG_STATUS_1+i+ProjecttollgatElem.TABLE_RYG_STATUS_YELLOW).click();
+								FindByCssSelector(ProjecttollgatElem.TABLE_REMARKS_1+i+ProjecttollgatElem.TABLE_REMARKS_2).sendKeys(Remarks);
+								break;
+							case "GREEN":
+								FindByCssSelector(ProjecttollgatElem.TABLE_RYG_STATUS_1+i+ProjecttollgatElem.TABLE_RYG_STATUS_GREEN).click();
+								FindByCssSelector(ProjecttollgatElem.TABLE_REMARKS_1+i+ProjecttollgatElem.TABLE_REMARKS_2).sendKeys(Remarks);
+								break;
+
+							default:
+								break;
+							}
+							break;
+							
+						}
+					}
+			    	}
 		    
 }

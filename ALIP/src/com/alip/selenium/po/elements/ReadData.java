@@ -285,5 +285,321 @@ public class ReadData extends page {
 				
 			}
 			
+//OBSERVATION
+			
+			public String ReadOBS_Description(int i){
+				String Description=testExcel.getStringCellData("Observation", i, "OBS_Description");
+				return Description;
+				
+			}
+			public String ReadOBS_QCtool(int i){
+				String QCtool=testExcel.getStringCellData("Observation", i, "OBS_QCtool");
+				return QCtool;
+				
+			}
+			
+			public String ReadOBS_Actual_ST(int i){
+				String Actual_ST=testExcel.getStringCellData("Observation", i, "OBS_Actual_ST");
+				return Actual_ST;
+				
+			}
+			public String ReadOBS_Actual_END(int i){
+				String Actual_END=testExcel.getStringCellData("Observation", i, "OBS_Actual_END");
+				return Actual_END;
+				
+			}			
+				
 
+			public String ReadOBS_RYG(int i){
+				String RYG=testExcel.getStringCellData("Obser_Toll", i, "RYG");
+				return RYG;
+				
+			}
+			public String ReadOBS_Remarks(int i){
+				String Remarks=testExcel.getStringCellData("Obser_Toll", i, "Remarks");
+				return Remarks;
+				
+			}
+			public String ReadOBS_Milestones(int i){
+				String Milestones=testExcel.getStringCellData("Obser_Toll", i, "Milestones");
+				return Milestones;
+				
+			}
+			
+			//Analysis
+			
+			public String ReadANALYS_Description(int i){
+				String ANALYS_Description=testExcel.getStringCellData("Analysis", i, "ANALYS_Description");
+				return ANALYS_Description;
+				
+			}
+			public String ReadANALYS_QCtool(int i){
+				String ANALYS_QCtool=testExcel.getStringCellData("Analysis", i, "ANALYS_QCtool");
+				return ANALYS_QCtool;
+				
+			}
+			
+			public String ReadANALYS_Actual_ST(int i){
+				String ANALYS_Actual_ST=testExcel.getStringCellData("Analysis", i, "ANALYS_Actual_ST");
+				return ANALYS_Actual_ST;
+				
+			}
+			public String ReadANALYS_Actual_END(int i){
+				String ANALYS_Actual_END=testExcel.getStringCellData("Analysis", i, "ANALYS_Actual_END");
+				return ANALYS_Actual_END ;
+			}
+				public String ReadProbable_Cause(int i){
+					String Probable_Cause=testExcel.getStringCellData("Analysis", i, "Probable_Cause");
+					return Probable_Cause;
+					
+				}
+				
+				public String ReadANALYS_Root_Cause(int i){
+					String Root_Cause=testExcel.getStringCellData("Analysis", i, "Root_Cause");
+					return Root_Cause;
+					
+				}
+				//Generation
+				
+				public String ReadGen_Idea_Title(int i){
+					String Idea_Title=testExcel.getStringCellData("Generation", i, "Idea_Title");
+					return Idea_Title;
+					
+				}
+				public String ReadGen_Idea_No(int i){
+					String Idea_No=testExcel.getStringCellData("Generation", i, "Idea_No");
+					return Idea_No;
+					
+				}
+				public String ReadGen_Idea_Classifier(int i){
+					String Idea_Classifier=testExcel.getStringCellData("Generation", i, "Idea_Classifier");
+					return Idea_Classifier;
+					
+				}
+				public String ReadGen_Idea_Description(int i){
+					String Idea_Description=testExcel.getStringCellData("Generation", i, "Idea_Description");
+					return Idea_Description;
+					
+				}
+				public String ReadGen_Idea_Type(int i){
+					String Idea_Type=testExcel.getStringCellData("Generation", i, "Idea_Type");
+					return Idea_Type;
+					
+				}
+				public String ReadGen_Line_of_Business(int i){
+					String Line_of_Business=testExcel.getStringCellData("Generation", i, "Line_of_Business");
+					return Line_of_Business;
+					
+				}
+				
+				public String ReadGen_Segment(int i){
+					String Segment=testExcel.getStringCellData("Generation", i, "Segment");
+					return Segment;
+					
+				}
+				public String ReadGen_Sub_Segment(int i){
+					String Sub_Segment=testExcel.getStringCellData("Generation", i, "Sub_Segment");
+					return Sub_Segment;
+					
+				}
+				public String ReadGen_Aggregate(int i){
+					String Aggregate=testExcel.getStringCellData("Generation", i, "Aggregate");
+					return Aggregate;
+					
+				}
+				public String ReadGen_Model(int i){
+					String Model=testExcel.getStringCellData("Generation", i, "Model");
+					return Model;
+					
+				}
+				public String ReadGen_Employee_No(int i){
+					String Employee_No=testExcel.getStringCellData("Generation", i, "Emp_No");
+					return Employee_No;
+					
+				}
+				
+				public String ReadGen_Emp_No_1(int i){
+					String Emp_No_1=testExcel.getStringCellData("Generation", i, "Emp_No_1");
+					return Emp_No_1;
+					
+				}
+				public String ReadGen_Emp_No_2(int i){
+					String Emp_No_2=testExcel.getStringCellData("Generation", i, "Emp_No_2");
+					return Emp_No_2;
+					
+				}
+				public void SetGen_Idea_No(int i,String ideaNo){
+					testExcel.setCellData("Generation", i, "Idea_No", ideaNo);
+					
+					
+				}
+					
+				
+//Evaluation
+				
+				public String ReadEval_Priority(int i){
+					String Eval_Prior=testExcel.getStringCellData("Evaluation", i, "Priority");
+					return Eval_Prior;
+					
+				}
+				public String ReadEval_MinorIdea(int i){
+					String MinorIdea=testExcel.getStringCellData("Evaluation", i, "MinorIdea");
+					return MinorIdea;
+					
+				}
+				
+				public String ReadEval_Comment(int i){
+					String Comment=testExcel.getStringCellData("Evaluation", i, "Comment");
+					return Comment;
+					
+				}
+			
+				
+				public String ReadEval_Impact(int i){
+					String Eval_Impact=testExcel.getStringCellData("Evaluation", i, "Impact");
+					return Eval_Impact;
+					
+				}
+				public String ReadEval_Feasibility(int i){
+					String Feasibility=testExcel.getStringCellData("Evaluation", i, "Feasibility");
+					return Feasibility;
+					
+				}
+				
+				public String ReadEval_BackupIdea(int i){
+					String BackupIdea=testExcel.getStringCellData("Evaluation", i, "BackupIdea");
+					return BackupIdea;
+					
+				}
+				public String ReadEval_BackUpIdeaNo(int i){
+					String BackUpIdeaNo=testExcel.getStringCellData("Evaluation", i, "BackUpIdeaNo");
+					return BackUpIdeaNo;
+					
+				}
+				public String ReadEval_CancelIdea(int i){
+					String CancelIdea=testExcel.getStringCellData("Evaluation", i, "CancelIdea");
+					return CancelIdea;
+					
+				}
+				public String ReadEval_IdeaHold(int i){
+					String IdeaHold=testExcel.getStringCellData("Evaluation", i, "IdeaHold");
+					return IdeaHold;
+					
+				}
+				public String ReadEval_KPI(int i){
+					String KPI=testExcel.getStringCellData("Eval_KPI", i, "KPI");
+					return KPI;
+					
+				}
+				
+				public String ReadEval_KPI_1(int i){
+					String KPI_1=testExcel.getStringCellData("Eval_KPI", i, "KPI_1");
+					return KPI_1;
+					
+				}
+				
+				public String ReadEval_KPI_2(int i){
+					String KPI_2=testExcel.getStringCellData("Eval_KPI", i, "KPI_2");
+					return KPI_2;
+					
+				}
+				
+				public String ReadEval_KPI_Impact(int i){
+					String KPI_Impact=testExcel.getStringCellData("Eval_KPI", i, "KPI_Impact");
+					return KPI_Impact;
+					
+				}
+				
+				public String ReadEval_ShareOfBusiness(int i){
+					String ShareOfBusiness=testExcel.getStringCellData("Eval_KPI", i, "ShareOfBusiness");
+					return ShareOfBusiness;
+					
+				}
+				
+				public String ReadEval_OneTime(int i){
+					String OneTime=testExcel.getStringCellData("Eval_KPI", i, "OneTime");
+					return OneTime;
+					
+				}
+				
+				public String ReadEval_AutoCompute(int i){
+					String AutoCompute=testExcel.getStringCellData("Eval_KPI", i, "AutoCompute");
+					return AutoCompute;
+					
+				}
+				
+				public String ReadEval_RecurringAnnum(int i){
+					String RecurringAnnum=testExcel.getStringCellData("Eval_KPI", i, "RecurringAnnum");
+					return RecurringAnnum;
+					
+				}
+				
+				public String ReadEval_CurrentMethod(int i){
+					String CurrentMethod=testExcel.getStringCellData("Eval_KPI", i, "CurrentMethod");
+					return CurrentMethod;
+					
+				}
+				
+				public String ReadEval_Advantages(int i){
+					String Advantages=testExcel.getStringCellData("Eval_KPI", i, "Advantages");
+					return Advantages;
+					
+				}
+				
+				public String ReadEval_IntangibleBenefit(int i){
+					String IntangibleBenefit=testExcel.getStringCellData("Eval_KPI", i, "IntangibleBenefit");
+					return IntangibleBenefit;
+					
+				}
+				
+				public String ReadEval_Downsides(int i){
+					String Downsides=testExcel.getStringCellData("Eval_KPI", i, "Downsides");
+					return Downsides;
+					
+				}
+				
+				public String ReadEval_Capital(int i){
+					String Capital=testExcel.getStringCellData("Evaluation", i, "Capital");
+					return Capital;
+					
+				}
+				
+				public String ReadEval_NonCapital(int i){
+					String NonCapital=testExcel.getStringCellData("Evaluation", i, "NonCapital");
+					return NonCapital;
+					
+				}
+				
+				public String ReadEval_Recurring(int i){
+					String Recurring=testExcel.getStringCellData("Evaluation", i, "Recurring");
+					return Recurring;
+					
+				}
+				
+				public String ReadEval_Emp_no(int i){
+					String Emp_no=testExcel.getStringCellData("Eval_EmpSeq", i, "Emp_no");
+					return Emp_no;
+					
+				}
+				
+				public String ReadEval_Emp_no_1(int i){
+					String Emp_no_1=testExcel.getStringCellData("Eval_EmpSeq", i, "Emp_no_1");
+					return Emp_no_1;
+					
+				}
+				
+				public String ReadEval_Emp_no_2(int i){
+					String Emp_no_2=testExcel.getStringCellData("Eval_EmpSeq", i, "Emp_no_2");
+					return Emp_no_2;
+					
+				}
+				
+				public String ReadEval_Sequence(int i){
+					String Sequence=testExcel.getStringCellData("Eval_EmpSeq", i, "Sequence");
+					return Sequence;
+					
+				}
+				
+				
+			
 }

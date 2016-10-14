@@ -14,6 +14,7 @@ import org.testng.Assert;
 import com.alip.selenium.basePage.page;
 import com.alip.selenium.po.elements.CreateProjectElem;
 import com.alip.selenium.po.elements.DashBoardElem;
+import com.alip.selenium.po.elements.IdeaSignOffElem;
 import com.alip.selenium.po.elements.LoginElem;
 import com.alip.selenium.po.elements.ProblemApprovalElem;
 import com.alip.selenium.po.elements.ReadData;
@@ -57,13 +58,43 @@ public class DashBoardPage extends page {
 		return new CreateProjectPage () ;
 		
 	}
+	public ProblemApprovalPage NavSponsorApprovalByURL() {
+		String currentUrl = page.driver.getCurrentUrl();
+		System.out.println("currentUrl:(actual )"+currentUrl);
+		
+			
+			currentUrl = CONFG.getProperty("URL_HOMEPAGE").replaceAll("/home", "")+DashBoardElem.INITPROBLEM_APPROVAL;
+			System.out.println("currentUrl:(in if )"+currentUrl);
+			
+			
+		page.driver.navigate().to(currentUrl);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(ProblemApprovalElem.FILTER_BTN)));
+		return new ProblemApprovalPage () ;
+		
+	}
 	
+	public IdeaSignOffPage NavIdeaSignOffByURL() {
+		String currentUrl = page.driver.getCurrentUrl();
+		System.out.println("currentUrl:(actual )"+currentUrl);
+		
+			
+			currentUrl = CONFG.getProperty("URL_HOMEPAGE").replaceAll("/home", "")+DashBoardElem.IDEA_SIGNOFF;
+			System.out.println("currentUrl:"+currentUrl);
+			
+			
+		page.driver.navigate().to(currentUrl);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(IdeaSignOffElem.IDEASIGNOFF)));
+		return new IdeaSignOffPage()  ;
+		
+	}
 public ProblemApprovalPage NavSponsorApproval() throws InterruptedException{
 		
-		while(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.PROJ_INIT_APPROVAL)) != null){
+		/*while(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.PROJ_INIT_APPROVAL)) != null){
 			System.out.println("test");
 		}
-		
+		*/
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.PROJ_INIT_APPROVAL)));
 		FindByCssSelector(DashBoardElem.PROJ_INIT_APPROVAL).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(ProblemApprovalElem.FILTER_BTN)));
@@ -73,9 +104,9 @@ public ProblemApprovalPage NavSponsorApproval() throws InterruptedException{
 
 public ProblemApprovalPage NavPendSponsorApproval() throws InterruptedException{
 		Thread.sleep(1000);
-		boolean slider=FindByCssSelector(DashBoardElem.PROFILE_SLIDER).isDisplayed();
-		System.out.println("slider :"+slider);
-		if(slider==true){
+		//boolean slider=FindByCssSelector(DashBoardElem.PROFILE_SLIDER);
+		//System.out.println("slider :"+slider);
+		if(!page.driver.findElements(By.cssSelector(DashBoardElem.PROFILE_SLIDER)).isEmpty()){
 			Thread.sleep(1000);
 			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(DashBoardElem.SLIDER_CLOSE)));
 			FindByCssSelector(DashBoardElem.SLIDER_CLOSE).click();	
@@ -91,24 +122,42 @@ public ProblemApprovalPage NavPendSponsorApproval() throws InterruptedException{
 		return new ProblemApprovalPage () ;
 	}
 
-public void RegistrationView(String ExepProjectCode) throws InterruptedException{
-	wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.REGISTRATION_ICON)));
-	FindByCssSelector(DashBoardElem.REGISTRATION_ICON).click();
-	wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(DashBoardElem.REGISTRATION)));
-	List projectRow=driver.findElements(By.cssSelector(DashBoardElem.REGISTRATION));
+public  ProjectTollGate  RegistrationView(String ExepProjectCode) throws InterruptedException{
+	OutPutView( ExepProjectCode,DashBoardElem.REGISTRATION_ICON);
+	return new ProjectTollGate() ;
+	
+}
+
+
+public  GenerationPage  GenerationView(String ExepProjectCode) throws InterruptedException{
+	OutPutView( ExepProjectCode,DashBoardElem.GENERATION_ICON);
+	return new GenerationPage() ;
+	
+}
+
+public  EvaluationPage  EvaluationView(String ExepProjectCode) throws InterruptedException{
+	OutPutView( ExepProjectCode,DashBoardElem.EVALUATION_ICON);
+	return new EvaluationPage() ;
+	
+}
+public  void OutPutView(String ExepProjectCode, String Stages) throws InterruptedException{
+	wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(Stages)));
+	FindByCssSelector(Stages).click();
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(DashBoardElem.OUTPUT)));
+	List projectRow=driver.findElements(By.cssSelector(DashBoardElem.OUTPUT));
 	int projectRowCnt=projectRow.size();
 	System.out.println("projectRowCnt :"+projectRowCnt);
 	for (int i=1;i<=projectRowCnt;i++){
-		String actualProjectCode=driver.findElement(By.cssSelector(DashBoardElem.REGISTRATION_1+i+DashBoardElem.REGISTRATION_2)).getText();
+		String actualProjectCode=driver.findElement(By.cssSelector(DashBoardElem.OUTPUT_1+i+DashBoardElem.OUTPUT_2)).getText();
 		System.out.println("actualProjectCode :"+actualProjectCode.trim()+" and Exp ProjCode "+ExepProjectCode.trim());
 		if (actualProjectCode.trim().equalsIgnoreCase(ExepProjectCode.trim())){
 			System.out.println("i value ;"+i);
-			String ProjectCode =FindByCssSelector(DashBoardElem.REGISTRATION_1+i+DashBoardElem.REGISTRATION_2).getText();
+			String ProjectCode =FindByCssSelector(DashBoardElem.OUTPUT_1+i+DashBoardElem.OUTPUT_2).getText();
 			System.out.println("ProjectCode :"+ProjectCode);
-			String ProjectName =FindByCssSelector(DashBoardElem.REGISTRATION_1+i+DashBoardElem.PROJECTNAME_2).getText();
+			String ProjectName =FindByCssSelector(DashBoardElem.OUTPUT_1+i+DashBoardElem.PROJECTNAME_2).getText();
 			System.out.println("ProjectName :"+ProjectName);
 			Thread.sleep(500);
-			FindByCssSelector(DashBoardElem.REGISTRATION_1+i+DashBoardElem.ACTION_2).click();
+			FindByCssSelector(DashBoardElem.OUTPUT_1+i+DashBoardElem.ACTION_2).click();
 			break;
 			
 		}
@@ -117,5 +166,7 @@ public void RegistrationView(String ExepProjectCode) throws InterruptedException
 	
 	
 }
+
+
 
 }
