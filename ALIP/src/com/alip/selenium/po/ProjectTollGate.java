@@ -32,6 +32,21 @@ public class ProjectTollGate extends page {
 		page.wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ObservationProjectElem.OBSERVATION_FORM)));
 		return new ObservationPage();
 		}
+	
+public ObservationPage NavRegistrationViewToObservation() throws InterruptedException {
+	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	//String Elem=document.getElementById("content");
+	//System.out.println(jse.executeScript("document.getElementsByClassName('login-page').scrollHeight;"));
+	jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	Thread.sleep(300);
+	//FindByCssSelector(CreateProjectElem.KPICODE_EDIT).click();
+	Actions action = new Actions(driver);
+	action.sendKeys(Keys.PAGE_DOWN).perform();
+	System.out.println("4000 scroll ");
+	Thread.sleep(1000);
+    FindByCssSelector(CreateProjectElem.NEXTBTN).click();
+		return new ObservationPage();
+		}
 public void NavTollToRegisteration() {
 		
     	page.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ProjecttollgatElem.MODERATION_STATUS)));
@@ -42,7 +57,7 @@ public void NavTollToRegisteration() {
 		
 		}
 	
-	public void CreatTollGate() throws Exception{
+	public void CreatTollGate(String ExpProject) throws Exception{
 		int RowCnt=testExcel.getRowCount("Toll");
     	System.out.println("TollRowCnt :"+RowCnt);
     	for(int j=2;j<=RowCnt;j++){
@@ -51,17 +66,47 @@ public void NavTollToRegisteration() {
     	}
     	FindByCssSelector(ProjecttollgatElem.SUBMIT).click();
     	page.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ProjecttollgatElem.MODERATION_STATUS)));
-    	Thread.sleep(1000);
+    	Thread.sleep(1200);
     	String ActualSuccessMsg=FindByCssSelector(ProjecttollgatElem.MODERATION_STATUS).getText();
     	System.out.println("ActualSuccessMsg :"+ActualSuccessMsg);
+    	if (!ExpProject.trim().equalsIgnoreCase("Deep Dive".trim())){
 		Assert.assertEquals(ActualSuccessMsg.toUpperCase().trim(), ProjecttollgatElem.MODERATION_STATUS_TXT.toUpperCase().trim());
-    	
+    	}
 		
 	}
 	 
+	
 	public void Proj_TollGate(String KeyMiles, String RYG,String Remarks) throws Exception{
 		
 		TollGate( KeyMiles,  RYG, Remarks) ;
+	}
+	
+	
+	public LoginPage logout() throws InterruptedException{
+		Logout();
+		return new LoginPage();
+	}
+	
+	public DashBoardPage NavDbPageFrmToll() throws InterruptedException{
+		
+			Thread.sleep(300);
+			String currentUrl = page.driver.getCurrentUrl();
+			System.out.println("currentUrl:(actual )"+currentUrl);
+			
+				
+				currentUrl = CONFG.getProperty("URL_HOMEPAGE").replaceAll("home", "")+DashBoardElem.REGISTRATION;
+				System.out.println("currentUrl:(in if )"+currentUrl);
+				
+				
+			page.driver.navigate().to(currentUrl);
+			Thread.sleep(1000);
+			
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(CreateProjectElem.PROB_TXT)));
+			
+		
+	
+		
+		return new DashBoardPage();
 	}
 	}
 

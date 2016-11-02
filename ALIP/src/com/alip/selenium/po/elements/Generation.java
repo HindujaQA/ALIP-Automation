@@ -3,7 +3,7 @@ package com.alip.selenium.po.elements;
 public class Generation {
 
 	//public static final String GEN_TITLE = ".page-header>h1";
-	//public static final String PJCT_NAME = "";
+/*	//public static final String PJCT_NAME = "";
 	//public static final String PJCT_CODE = "";
 	//public static final String PJCT_TYPE = "";
 	public static final String IDEA_TITLE = "#projectName[ng-model='ideaTitle']";
@@ -27,5 +27,5 @@ public class Generation {
 	public static final String SUBMIT_BTN = ".submitBtn[ng-show='showSubmitBtn']";
 	public static final String NEXT_BTN = ".NextpageBtn[ng-show='showNextBtn']";
 	
-	
+	*/
 }

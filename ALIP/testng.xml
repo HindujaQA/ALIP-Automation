@@ -4,7 +4,7 @@
 	
 	<listeners>
 		<listener class-name="com.alip.selenium.util.TestScriptListener"/>	
-		 <listener class-name="com.alip.selenium.util.RetryListener"/>
+		
 		
 	</listeners>
 	
@@ -15,27 +15,20 @@
   </test> <!-- Test -->
   	
   
-  <test name="TestLogin" >
+  <test name="Test WorkFlow" >
   	<classes>
-    	<class name="com.alip.selenium.pages.tests.TestLogin">
+    	<class name="com.alip.selenium.pages.tests.TestWorkflow">
         	<methods>
         	    
-      			<include name="checkLogin"/>
+      			<include name="DeepDiveProj"/>
       			  		 		
       		</methods>
-      	</class> <!--com.alip.selenium.pages.tests.TestLogin -->       
+      	</class> <!--com.alip.selenium.pages.tests.TestWorkflow -->       
+      	
    	</classes> 
-  </test> <!-- TestLogin -->
+  </test> <!-- TestWorkFlow -->
+  
+  
    
-   <test name="TestResource_Request_Form " >
-  	<classes>
-    	<class name="com.alip.selenium.pages.tests.TestResource_Request_Form">
-        	<methods>
-      			<include name="CreateRRF"/>
-      			  		 		
-      		</methods>
-      	</class> <!--com.alip.selenium.pages.tests.TestResource_Request_Form  -->       
-   	</classes> 
-  </test> <!-- TestResource_Request_Form -->
-
+  
 </suite> <!-- Suite -->

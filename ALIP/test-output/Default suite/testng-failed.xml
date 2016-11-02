@@ -3,7 +3,18 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test verbose="2" name="Default test">
     <classes>
-      <class name="com.alip.selenium.pages.tests.TestCreateProject"/>
+      <class name="com.alip.selenium.pages.tests.TestGenerationPage"/>
     </classes>
   </test> <!-- Default test -->
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.alip.selenium.pages.tests.TestGenerationPage">
+        <methods>
+          <include name="initDBPageBeforeTest"/>
+          <include name="initRegistrationPageBeforeTest"/>
+          <include name="ValidateIdeaGeneration"/>
+        </methods>
+      </class> <!-- com.alip.selenium.pages.tests.TestGenerationPage -->
+    </classes>
+  </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -14,7 +14,7 @@ import com.alip.selenium.po.elements.ProblemApprovalElem;
 
 public class ProblemApprovalPage extends page {
 	
-	public LoginPage PAPlogout(){
+	public LoginPage PAPlogout() throws InterruptedException{
 		Logout();
 		return new LoginPage();
 	}
@@ -39,13 +39,16 @@ public class ProblemApprovalPage extends page {
 	    
 	public void PendingApproval(String ExepProjectCode, String Filter) throws InterruptedException{
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(ProblemApprovalElem.FILTER_BTN)));
+		txtbox(ProblemApprovalElem.FIL_PROJECT_CODE, ExepProjectCode);
 		SelectDropdown(ProblemApprovalElem.FILTER_STATUS, Filter);
 		FindByCssSelector(ProblemApprovalElem.FILTER_BTN).click();
+		Thread.sleep(500);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(ProblemApprovalElem.PROJECT_TAB)));
 		List projectRow=driver.findElements(By.cssSelector(ProblemApprovalElem.PROJECT_CODE));
 		int projectRowCnt=projectRow.size();
 		System.out.println("projectRowCnt :"+projectRowCnt);
 		for (int i=1;i<=projectRowCnt;i++){
+			Thread.sleep(300);
 			String actualProjectCode=driver.findElement(By.cssSelector(ProblemApprovalElem.PROJECT_1+i+ProblemApprovalElem.PROJECT_CODE_1)).getText();
 			System.out.println("actualProjectCode :"+actualProjectCode.trim()+" and Exp ProjCode "+ExepProjectCode.trim());
 			if (actualProjectCode.trim().equalsIgnoreCase(ExepProjectCode.trim())){

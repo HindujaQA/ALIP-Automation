@@ -1,5 +1,6 @@
 package com.alip.selenium.po;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -124,7 +125,7 @@ public class CreateProjectPage extends page {
         jse.executeScript("arguments[0].scrollIntoView();", element);
     }
     
-    public void ValidateKPISection() throws InterruptedException{
+    public void ValidateKPISection(int i) throws InterruptedException{
         //KPI
     	Actions action = new Actions(driver);
         action.sendKeys(Keys.PAGE_DOWN).perform();
@@ -132,15 +133,27 @@ public class CreateProjectPage extends page {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.KPICODE_LABEL)));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CreateProjectElem.KPICODE)));
        
-        AutoSuggest(CreateProjectElem.KPICODE, CreateProjectElem.KPICODE_AUTO, CreateProjectElem.KPICODE_AUTO_1,rd.ReadKPI_code(),rd.ReadKPI_1(),rd.ReadKPI_2());
-        txtbox(CreateProjectElem.BASELINE,rd.ReadBaseline());
-        txtbox(CreateProjectElem.TARGET,rd.ReadTarget());
+        AutoSuggest(CreateProjectElem.KPICODE, CreateProjectElem.KPICODE_AUTO, CreateProjectElem.KPICODE_AUTO_1,rd.ReadKPI_code(i),rd.ReadKPI_1(i),rd.ReadKPI_2(i));
+        txtbox(CreateProjectElem.BASELINE,rd.ReadBaseline(i));
+        txtbox(CreateProjectElem.TARGET,rd.ReadTarget(i));
         FindByCssSelector(CreateProjectElem.KPI_ADD).click();
         
     	
     }
     
-   
+   public String ReturnProjOwner() throws InterruptedException{
+	   Thread.sleep(300);
+	   FindByCssSelector(CreateProjectElem.PROJECT_OWNER_ICON).click();
+       wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.PROJECT_OWNER)));
+       
+       String ProjectOwner=FindByCssSelector(CreateProjectElem.PROJECT_OWNER).getText();
+       System.out.println("ProjectOwner :"+ProjectOwner);
+       rd.SetPrjOwner(2, ProjectOwner);
+       
+	  
+	   return ProjectOwner;
+	   
+   }
     public void TeamList(String Exp_Project) throws InterruptedException{
     	int RowCnt=testExcel.getRowCount("Role");
     	System.out.println("RowCnt :"+RowCnt);
@@ -149,19 +162,16 @@ public class CreateProjectPage extends page {
     		  
     		String actual_Project=rd.ReadRoleProject(i);
     		System.out.println("actual_Project :"+actual_Project);
-    		if (Exp_Project.equalsIgnoreCase(actual_Project)){
+    		//if (Exp_Project.equalsIgnoreCase(actual_Project)){
     			  
     		        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.TEAMLIST)));
     		        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CreateProjectElem.ROLE)));
     		        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CreateProjectElem.EMPLOYEE_NAME)));
-    		       /* FindByCssSelector(CreateProjectElem.PROJECT_OWNER_ICON).click();
-    		        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.PROJECT_OWNER)));
-    		        
-    		        String ProjectOwner=FindByCssSelector(CreateProjectElem.PROJECT_OWNER).getText();
-    		        System.out.println("ProjectOwner :"+ProjectOwner);
-    		        rd.SetPrjOwner(2, ProjectOwner);
-    		      */  System.out.println("Employee_name; "+rd.ReadEmployee_name(i));
+    		       System.out.println("Employee_name; "+rd.ReadEmployee_name(i));
+    		      /* String[] ProjList={"APS","BPS"};
+    		        if (Arrays.asList(ProjList).contains(ExpProjectType)){
     		        FindByCssSelector(CreateProjectElem.PROJECT_OWNER_ICON).click();
+    		        }*/
     		        System.out.println("Role; "+rd.ReadRole(i));
     		       System.out.println("Employee_name_1; "+rd.ReadEmployee_name_1(i));
     		       System.out.println("Employee_name_2; "+rd.ReadEmployee_name_2(i));
@@ -172,180 +182,140 @@ public class CreateProjectPage extends page {
     			
     		}
     		
-    	}
+    	//}
     	
     }
     
-    public ProjectTollGate CreateProjAPS (String ProjectType) throws Exception{
+    public ProjectTollGate CreateProjAPS (String ExpProjectType,String ExpProjectName, String Save_Submit,int i) throws Exception{
     	
     	String probText = FindByXpath(CreateProjectElem.PROB_TXT).getText();
     	String regText = FindByXpath(CreateProjectElem.REG_TXT).getText();;
 		Assert.assertEquals("PROBLEM", probText);
 		Assert.assertEquals("Registration", regText);
 		String projType = FindByCssSelector(CreateProjectElem.PROJ_TYPE).getText();
-		Assert.assertEquals(ProjectType.toUpperCase().trim(), projType.toUpperCase().trim());
+		Assert.assertEquals(ExpProjectType.toUpperCase().trim(), projType.toUpperCase().trim());
 		System.out.println(projType +" "+regText+" "+probText);
 		
 		
     	Actions action = new Actions(driver);
-		SelectDropdown(CreateProjectElem.LOCATION, rd.Readlocation());
-		txtbox(CreateProjectElem.PROJECT_NAME, rd.ReadProject_Name());
-		txtbox(CreateProjectElem.DESCRIPTION, rd.ReadDescription());
-		SelectDropdown(CreateProjectElem.GEMBA_UNIT, rd.ReadGemba_Unit());
-		SelectDropdown(CreateProjectElem.DIVISION, rd.ReadDivision());
-		String []drpDownExep_Val={rd.ReadQC_Tools()};
+		SelectDropdown(CreateProjectElem.LOCATION, rd.Readlocation(i));
+		txtbox(CreateProjectElem.PROJECT_NAME, ExpProjectName);
+		txtbox(CreateProjectElem.DESCRIPTION, rd.ReadDescription(i));
+		SelectDropdown(CreateProjectElem.GEMBA_UNIT, rd.ReadGemba_Unit(i));
+		SelectDropdown(CreateProjectElem.DIVISION, rd.ReadDivision(i));
+		String []drpDownExep_Val={rd.ReadQC_Tools(i)};
         SelectandCheckFrmDrp(CreateProjectElem.QC_TOOL, CreateProjectElem.QC_TOOL_DRPDWN, drpDownExep_Val, CreateProjectElem.QC_TOOL_DRPDWN_1, CreateProjectElem.QC_TOOL_LIST_CHK);
-        SelectDropdown(CreateProjectElem.CATEGORY, rd.ReadCategory());
-        SelectDropdown(CreateProjectElem.SUB_CATEGORY, rd.ReadSub_Category());
+        SelectDropdown(CreateProjectElem.CATEGORY, rd.ReadCategory(i));
+        SelectDropdown(CreateProjectElem.SUB_CATEGORY, rd.ReadSub_Category(i));
         
         //parent project
-        SelectDropdown(CreateProjectElem.CUSTOMER, rd.ReadCustomer());
+        SelectDropdown(CreateProjectElem.CUSTOMER, rd.ReadCustomer(i));
         
-        SelectDateFrmCalender(CreateProjectElem.PLANNED_STRT, rd.ReadProject_Planned());
-        SelectDateFrmCalender(CreateProjectElem.PLANNED_END, rd.ReadProject_Pl_end());
-        SelectDateFrmCalender(CreateProjectElem.PROBLEM_START_DATE, rd.ReadProblem_start_date());
-        SelectDateFrmCalender(CreateProjectElem.PROBLEM_END_DATE, rd.ReadProblem_end_date());
-        txtbox(CreateProjectElem.KEYWORDS, rd.Readkeywords());
+        SelectDateFrmCalender(CreateProjectElem.PLANNED_STRT, rd.ReadProject_Planned(i));
+        SelectDateFrmCalender(CreateProjectElem.PLANNED_END, rd.ReadProject_Pl_end(i));
+        SelectDateFrmCalender(CreateProjectElem.PROBLEM_START_DATE, rd.ReadProblem_start_date(i));
+        SelectDateFrmCalender(CreateProjectElem.PROBLEM_END_DATE, rd.ReadProblem_end_date(i));
+        txtbox(CreateProjectElem.KEYWORDS, rd.Readkeywords(i));
         // Gantt chart Plan
-        FindByCssSelector(".chart.col-md-5.col-lg-5.col-sm-3.col-xs-3.margin-top-15").click();
+        FindByCssSelector(CreateProjectElem.GANTT_CHART_PLAN).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#problemSubMenu1 .page-header.margin-top-15>h1")));
         
-        SelectDateFrmCalender(CreateProjectElem.REG_START_DATE,rd.ReadReg_Start_date());
-        SelectDateFrmCalender(CreateProjectElem.REG_END_DATE,rd.ReadReg_end_date());
-        SelectDateFrmCalender(CreateProjectElem.OBSER_ST_DATE,rd.ReadObservation_st_date());
-        SelectDateFrmCalender(CreateProjectElem.OBSER_END_DATE,rd.ReadObservation_end_date());
-        SelectDateFrmCalender(CreateProjectElem.ANALYSIS_ST_DATE,rd.ReadAnalysis_st_date());
-        SelectDateFrmCalender(CreateProjectElem.ANALYSIS_END_DATE,rd.ReadAnalysis_end_date());
-        SelectDateFrmCalender(CreateProjectElem.ACTION_ST_DATE,rd.ReadAction_Start_date());
-        SelectDateFrmCalender(CreateProjectElem.ACTION_END_DATE,rd.ReadAction_end_date());
+        SelectDateFrmCalender(CreateProjectElem.REG_START_DATE,rd.ReadReg_Start_date(i));
+        SelectDateFrmCalender(CreateProjectElem.REG_END_DATE,rd.ReadReg_end_date(i));
+        SelectDateFrmCalender(CreateProjectElem.OBSER_ST_DATE,rd.ReadObservation_st_date(i));
+        SelectDateFrmCalender(CreateProjectElem.OBSER_END_DATE,rd.ReadObservation_end_date(i));
+        String[] ProjList={"APS","BPS","Deep Dive"};
+        if (Arrays.asList(ProjList).contains(ExpProjectType)){
+        SelectDateFrmCalender(CreateProjectElem.ANALYSIS_ST_DATE,rd.ReadAnalysis_st_date(i));
+        SelectDateFrmCalender(CreateProjectElem.ANALYSIS_END_DATE,rd.ReadAnalysis_end_date(i));
+        SelectDateFrmCalender(CreateProjectElem.ACTION_ST_DATE,rd.ReadAction_Start_date(i));
+        SelectDateFrmCalender(CreateProjectElem.ACTION_END_DATE,rd.ReadAction_end_date(i));
         action.sendKeys(Keys.PAGE_DOWN).perform();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.Check_STDT_FLD)));
         System.out.println("IN TEST");
+        Thread.sleep(300);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CreateProjectElem.Check_ST_DATE)));
-        SelectDateFrmCalender(CreateProjectElem.Check_ST_DATE,rd.ReadCheck_Start_date());
-        SelectDateFrmCalender(CreateProjectElem.Check_END_DATE,rd.ReadCheck_end_date());
-        SelectDateFrmCalender(CreateProjectElem.STD_ST_DATE,rd.ReadStd_st_date());
-        SelectDateFrmCalender(CreateProjectElem.STD_END_DATE,rd.ReadStd_end_date());
-        SelectDateFrmCalender(CreateProjectElem.CONCLUDE_ST_DATE,rd.ReadConclude_st_date());
-        SelectDateFrmCalender(CreateProjectElem.CONCLUDE_END_DATE,rd.ReadConclude_end_date());
-     
+        SelectDateFrmCalender(CreateProjectElem.Check_ST_DATE,rd.ReadCheck_Start_date(i));
+        SelectDateFrmCalender(CreateProjectElem.Check_END_DATE,rd.ReadCheck_end_date(i));
+        SelectDateFrmCalender(CreateProjectElem.STD_ST_DATE,rd.ReadStd_st_date(i));
+        SelectDateFrmCalender(CreateProjectElem.STD_END_DATE,rd.ReadStd_end_date(i));
+        SelectDateFrmCalender(CreateProjectElem.CONCLUDE_ST_DATE,rd.ReadConclude_st_date(i));
+        SelectDateFrmCalender(CreateProjectElem.CONCLUDE_END_DATE,rd.ReadConclude_end_date(i));
+        }
         //KPI
         action.sendKeys(Keys.PAGE_DOWN).perform();
         System.out.println("KPIPage down");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.KPICODE_LABEL)));
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CreateProjectElem.KPICODE)));
        
-        AutoSuggest(CreateProjectElem.KPICODE, CreateProjectElem.KPICODE_AUTO, CreateProjectElem.KPICODE_AUTO_1,rd.ReadKPI_code(),rd.ReadKPI_1(),rd.ReadKPI_2());
-        txtbox(CreateProjectElem.BASELINE,rd.ReadBaseline());
-        txtbox(CreateProjectElem.TARGET,rd.ReadTarget());
+        AutoSuggest(CreateProjectElem.KPICODE, CreateProjectElem.KPICODE_AUTO, CreateProjectElem.KPICODE_AUTO_1,rd.ReadKPI_code(i),rd.ReadKPI_1(i),rd.ReadKPI_2(i));
+        txtbox(CreateProjectElem.BASELINE,rd.ReadBaseline(i));
+        txtbox(CreateProjectElem.TARGET,rd.ReadTarget(i));
         FindByCssSelector(CreateProjectElem.KPI_ADD).click();
         action.sendKeys(Keys.PAGE_DOWN).perform();
         System.out.println("Page down");
         
-        TeamList("APS");
-    
-        FindByCssSelector(CreateProjectElem.SUBMIT).click();
+        // Project Owner
+        //String[] ProjList={"APS","BPS"};
+        if (Arrays.asList(ProjList).contains(ExpProjectType)){
+       // if ((ExpProjectType.equalsIgnoreCase(("APS"))||ExpProjectType.equalsIgnoreCase("BPS"))){
+        	String ProjOwner=ReturnProjOwner();
+        	
+        	
+        	
+        }
+        TeamList(ExpProjectType.toUpperCase().trim());
+    if (Save_Submit.trim().equalsIgnoreCase("Submit")){
+	        FindByCssSelector(CreateProjectElem.SUBMIT).click();
+	        Thread.sleep(500);
+	        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(CreateProjectElem.SUBMIT_SUCESS_MSG)));
+	        String successMsg=FindByCssSelector(CreateProjectElem.SUBMIT_SUCESS_MSG).getText().toUpperCase().trim();
+	       // successMsg=successMsg.replaceAll("[^Problem submitted successfully!]", "");
+	        String ExpSuccessMsg=CreateProjectElem.SUCESS_MSG.toUpperCase().trim();
+	    
+	        System.out.println("ExpSuccessMsg :"+ExpSuccessMsg+ " successMsg :"+successMsg);
+	        Assert.assertTrue(successMsg.contains(ExpSuccessMsg));
+    }else{
+    	FindByCssSelector(CreateProjectElem.SAVE).click();
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(CreateProjectElem.SUBMIT_SUCESS_MSG)));
         String successMsg=FindByCssSelector(CreateProjectElem.SUBMIT_SUCESS_MSG).getText();
+      Assert.assertEquals(successMsg.toUpperCase().trim(),CreateProjectElem.SAVE_MSG.toUpperCase().trim());
+    }
         String ProjCode=FindByXpath(CreateProjectElem.PROJ_CODE).getText();
         System.out.println("ProjCode : "+ProjCode);
-        rd.SetPrjcode(2, ProjCode);
+        //rd.SetPrjcode(2, ProjCode);
        // Assert.assertEquals(successMsg.toUpperCase().trim(),CreateProjectElem.SUCESS_MSG.toUpperCase().trim());
         return new ProjectTollGate();
         
+        
     }
-    
-    
-public void CreateProjAchieveMore (String ProjectType) throws Exception{
+public CampaignPage navToCampaignPage() throws InterruptedException{
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.PAGE_DOWN).perform();
+    	FindByCssSelector(CreateProjectElem.BTN_CAMPAIGN);
+    	Thread.sleep(500);
+    	return new CampaignPage();
     	
-  	String probText = FindByXpath(CreateProjectElem.PROB_TXT).getText();
-	String regText = FindByXpath(CreateProjectElem.REG_TXT).getText();;
-	Assert.assertEquals("PROBLEM", probText);
-	Assert.assertEquals("Registration", regText);
-	String projType = FindByCssSelector(CreateProjectElem.PROJ_TYPE).getText();
-	Assert.assertEquals(ProjectType.toUpperCase().trim(), projType.toUpperCase().trim());
-	System.out.println(projType +" "+regText+" "+probText);
-	
-	
-	Actions action = new Actions(driver);
-	SelectDropdown(CreateProjectElem.LOCATION, rd.Readlocation());
-	txtbox(CreateProjectElem.PROJECT_NAME, "Test Project created through automation");
-	txtbox(CreateProjectElem.DESCRIPTION, "Description for the test project");
-	SelectDropdown(CreateProjectElem.GEMBA_UNIT, rd.ReadGemba_Unit());
-	SelectDropdown(CreateProjectElem.DIVISION, rd.ReadDivision());
-	String []drpDownExep_Val={rd.ReadQC_Tools()};
-    SelectandCheckFrmDrp(CreateProjectElem.QC_TOOL, CreateProjectElem.QC_TOOL_DRPDWN, drpDownExep_Val, CreateProjectElem.QC_TOOL_DRPDWN_1, CreateProjectElem.QC_TOOL_LIST_CHK);
-    SelectDropdown(CreateProjectElem.CATEGORY, rd.ReadCategory());
-    SelectDropdown(CreateProjectElem.SUB_CATEGORY, rd.ReadSub_Category());
-    
-    //parent project
-    SelectDropdown(CreateProjectElem.CUSTOMER, rd.ReadCustomer());
-    
-    SelectDateFrmCalender(CreateProjectElem.PLANNED_STRT, rd.ReadProject_Planned());
-    SelectDateFrmCalender(CreateProjectElem.PLANNED_END, rd.ReadProject_Pl_end());
-    SelectDateFrmCalender(CreateProjectElem.PROBLEM_START_DATE, rd.ReadProblem_start_date());
-    SelectDateFrmCalender(CreateProjectElem.PROBLEM_END_DATE, rd.ReadProblem_end_date());
-    txtbox(CreateProjectElem.KEYWORDS, rd.Readkeywords());
-    // Gantt chart Plan
-    FindByCssSelector(".chart.col-md-5.col-lg-5.col-sm-3.col-xs-3.margin-top-15").click();
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#problemSubMenu1 .page-header.margin-top-15>h1")));
-   // String gantchart = driver.findElement(By.cssSelector(""#problemSubMenu1 .page-header.margin-top-15>h1"")).getTitle();
-    
-    
-    SelectDateFrmCalender(CreateProjectElem.REG_START_DATE,rd.ReadReg_Start_date());
-    SelectDateFrmCalender(CreateProjectElem.REG_END_DATE,rd.ReadReg_end_date());
-    SelectDateFrmCalender(CreateProjectElem.OBSER_ST_DATE,rd.ReadObservation_st_date());
-    SelectDateFrmCalender(CreateProjectElem.OBSER_END_DATE,rd.ReadObservation_end_date());
-    SelectDateFrmCalender(CreateProjectElem.ANALYSIS_ST_DATE,rd.ReadAnalysis_st_date());
-    SelectDateFrmCalender(CreateProjectElem.ANALYSIS_END_DATE,rd.ReadAnalysis_end_date());
-    SelectDateFrmCalender(CreateProjectElem.ACTION_ST_DATE,rd.ReadAction_Start_date());
-    SelectDateFrmCalender(CreateProjectElem.ACTION_END_DATE,rd.ReadAction_end_date());
-    action.sendKeys(Keys.PAGE_DOWN).perform();
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.Check_STDT_FLD)));
-    System.out.println("IN TEST");
-    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CreateProjectElem.Check_ST_DATE)));
-    SelectDateFrmCalender(CreateProjectElem.Check_ST_DATE,rd.ReadCheck_Start_date());
-    SelectDateFrmCalender(CreateProjectElem.Check_END_DATE,rd.ReadCheck_end_date());
-    SelectDateFrmCalender(CreateProjectElem.STD_ST_DATE,rd.ReadStd_st_date());
-    SelectDateFrmCalender(CreateProjectElem.STD_END_DATE,rd.ReadStd_end_date());
-    SelectDateFrmCalender(CreateProjectElem.CONCLUDE_ST_DATE,rd.ReadConclude_st_date());
-    SelectDateFrmCalender(CreateProjectElem.CONCLUDE_END_DATE,rd.ReadConclude_end_date());
- 
-    
-    //ScrollPageToElement(CreateProjectElem.KPI_CODE);
-    FindByCssSelector(CreateProjectElem.PROJECT_OWNER_ICON).click();
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.PROJECT_OWNER)));
-    String ProjectOwner=FindByCssSelector(CreateProjectElem.PROJECT_OWNER).getText();
-    System.out.println("ProjectOwner :"+ProjectOwner);
-    rd.SetPrjOwner(2, ProjectOwner);
-  
-    //KPI
-    action.sendKeys(Keys.PAGE_DOWN).perform();
-    System.out.println("Page down");
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.KPICODE_LABEL)));
-    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CreateProjectElem.KPICODE)));
-   
-    AutoSuggest(CreateProjectElem.KPICODE, CreateProjectElem.KPICODE_AUTO, CreateProjectElem.KPICODE_AUTO_1,rd.ReadKPI_code(),rd.ReadKPI_1(),rd.ReadKPI_2());
-    txtbox(CreateProjectElem.BASELINE,rd.ReadBaseline());
-    txtbox(CreateProjectElem.TARGET,rd.ReadTarget());
-    FindByCssSelector(CreateProjectElem.KPI_ADD).click();
-    
-    
-    //Team List
-  //  SelectDropdown(CreateProjectElem.ROLE,rd.ReadRole());
-    action.sendKeys(Keys.PAGE_DOWN).perform();
-    System.out.println("Page down");
-    TeamList("Achieve More");
-    /*wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(CreateProjectElem.TEAMLIST)));
-    wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CreateProjectElem.EMPLOYEE_NAME)));
-   
-    AutoSuggest(CreateProjectElem.EMPLOYEE_NAME, CreateProjectElem.EMP_NAME_AUTO, CreateProjectElem.EMP_NAME_AUTO_1, rd.ReadEmployee_name(),rd.ReadEmployee_name_1(),rd.ReadEmployee_name_2());
-    FindByCssSelector(CreateProjectElem.EMP_ADD).click();*/
-    FindByCssSelector(CreateProjectElem.SUBMIT).click();
-    
-    
-    
-        
-        
     }
+    
+public GenerationPage navToGenerationPage() throws InterruptedException{
+	
+	FindByCssSelector(CreateProjectElem.BTN_GENERATION);
+	return new GenerationPage();
+	
+}
+
+	public DashBoardPage navToDashBoardPage() throws InterruptedException{
+    	
+    	NavtoDashboardPage();
+    	return new DashBoardPage();
+    	
+    }
+    
+    public String returnProjCode(){
+    	String ProjCode=FindByXpath(CreateProjectElem.PROJ_CODE).getText();
+    	return ProjCode;
+    }
+    
+    
 }

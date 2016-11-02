@@ -6,22 +6,23 @@ import org.testng.Assert;
 
 import com.alip.selenium.basePage.page;
 import com.alip.selenium.po.elements.AnalysisElem;
+import com.alip.selenium.po.elements.DashBoardElem;
 import com.alip.selenium.po.elements.GenerationElem;
 import com.alip.selenium.po.elements.ReadData;
 
 public class GenerationPage extends page{
 	
 	ReadData rd= new ReadData();
-	public EvaluationPage CreateGeneration() throws Exception
+	public String CreateGeneration(String Exep_Proj_Code,String Exep_Proj_Name,String Exep_Proj_Type,String IdeaTitle) throws Exception
 	{
 		Thread.sleep(1000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(GenerationElem.GEN_FORM)));
 		String Proj_Code=FindByXpath(GenerationElem.GEN_PROJECT_CODE).getText();
 		String Proj_Name=FindByXpath(GenerationElem.GEN_PROJECT_NAME).getText();
 		String Proj_Type=FindByXpath(GenerationElem.GEN_PROJECT_TYPE).getText();
-		String Exep_Proj_Code=rd.ReadProjectCode().toUpperCase().trim();
-		String Exep_Proj_Name=rd.ReadProject_Name().toUpperCase().trim();
-		String Exep_Proj_Type=rd.ReadProjectType().toUpperCase().trim();
+		Exep_Proj_Code=Exep_Proj_Code.toUpperCase().trim();
+		Exep_Proj_Name=Exep_Proj_Name.toUpperCase().trim();
+		Exep_Proj_Type=Exep_Proj_Type.toUpperCase().trim();
 		System.out.println("Proj_Code :"+Proj_Code+" Exep_Proj_Code :"+Exep_Proj_Code);
 		System.out.println("Proj_Name :"+Proj_Name+" Exep_Proj_Name :"+Exep_Proj_Name);
 		System.out.println("Proj_Type :"+Proj_Type+" Exep_Proj_Type :"+Exep_Proj_Type);
@@ -31,8 +32,8 @@ public class GenerationPage extends page{
 	
 		
 		
-		txtbox(GenerationElem.GEN_IDEA_TITLE, rd.ReadANALYS_Description(2));
-		txtbox(GenerationElem.GEN_IDEA_DESC, rd.ReadANALYS_Description(2));
+		txtbox(GenerationElem.GEN_IDEA_TITLE, IdeaTitle);
+		txtbox(GenerationElem.GEN_IDEA_DESC, rd.ReadGen_Idea_Classifier(2));
 		selectOptionFromDropDown(GenerationElem.GEN_IDEA_CLASSIFIER,rd.ReadGen_Idea_Classifier(2));
 		selectOptionFromDropDown(GenerationElem.GEN_IDEA_TYPE,rd.ReadGen_Idea_Type(2));
 		
@@ -54,18 +55,34 @@ public class GenerationPage extends page{
         FindByCssSelector(GenerationElem.GEN_EMP_ADD).click();
         Thread.sleep(300);
         FindByCssSelector(GenerationElem.GEN_SUBMIT).click();
+        Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(GenerationElem.GEN_SUCCESS)));
 		String SucessMSG=FindByCssSelector(GenerationElem.GEN_SUCCESS).getText().toUpperCase().trim();
 		Thread.sleep(500);
 		Assert.assertEquals(SucessMSG, GenerationElem.GEN_SUCCESS_MSG.toUpperCase().trim(), "Generation is not Successful");
 		String ideaNo=FindByCssSelector(GenerationElem.GEN_IDEA_NO).getText();
 		System.out.println("ideaNo :"+ideaNo);
-		rd.SetGen_Idea_No(2, ideaNo);
-		FindByCssSelector(GenerationElem.GEN_NEXT).click();
+		return  ideaNo;
 		
-		return new EvaluationPage();
+	
 	}
 
+public EvaluationPage NavtoEvaluationPage() throws InterruptedException {
+	
+	Thread.sleep(500);
+	FindByCssSelector(GenerationElem.GEN_NEXT).click();
+	
+	return new EvaluationPage();
+}
 
+public IdeaListPage IdeaGeneration() throws InterruptedException {
+	Thread.sleep(500);
+	wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.PROFILE_SLIDER_BTN)));
+	FindByCssSelector(DashBoardElem.PROFILE_SLIDER_BTN).click();
+	Thread.sleep(300);
+	FindByCssSelector(DashBoardElem.ACTION_SLIDER_BTN).click();
+	Thread.sleep(300);
+	return new IdeaListPage();
+}
 
 }

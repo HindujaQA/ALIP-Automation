@@ -14,20 +14,21 @@ import com.alip.selenium.po.elements.ReadData;
 
 public class EvaluationPage extends page {
 	ReadData rd= new ReadData();
-	public void CreateEvaluation() throws Exception
+	public DashBoardPage CreateEvaluation(String Exep_Proj_Code,String Exep_Proj_Name,String Exep_Proj_Type ) throws Exception
 	{
-		Thread.sleep(1000);
+		Thread.sleep(1500);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(EvaluationElem.EVAL_FORM)));
 		String Idea_No=FindByCssSelector(EvaluationElem.IDEA_NO).getText().toUpperCase().trim();
 		String Idea_Title=FindByCssSelector(EvaluationElem.IDEA_TITLE).getText().toUpperCase().trim();
 		String Proj_Code=FindByCssSelector(EvaluationElem.PJCT_CODE).getText().toUpperCase().trim();
 		String Proj_Name=FindByCssSelector(EvaluationElem.PJCT_NAME).getText().toUpperCase().trim();
 		String Proj_Type=FindByCssSelector(EvaluationElem.PJCT_TYPE).getText().toUpperCase().trim();
+		
 		//String Exep_Idea_No=rd.ReadProjectCode().toUpperCase().trim();
 		//String Exep_Idea_Title=rd.ReadProject_Name().toUpperCase().trim();
-		String Exep_Proj_Code=rd.ReadProjectCode().toUpperCase().trim();
-		String Exep_Proj_Name=rd.ReadProject_Name().toUpperCase().trim();
-		String Exep_Proj_Type=rd.ReadProjectType().toUpperCase().trim();
+		Exep_Proj_Code=Exep_Proj_Code.toUpperCase().trim();
+		Exep_Proj_Name=Exep_Proj_Name.toUpperCase().trim();
+		Exep_Proj_Type=Exep_Proj_Type.toUpperCase().trim();
 		System.out.println("Proj_Code :"+Proj_Code+" Exep_Proj_Code :"+Exep_Proj_Code);
 		System.out.println("Proj_Name :"+Proj_Name+" Exep_Proj_Name :"+Exep_Proj_Name);
 		System.out.println("Proj_Type :"+Proj_Type+" Exep_Proj_Type :"+Exep_Proj_Type);
@@ -36,8 +37,8 @@ public class EvaluationPage extends page {
 		Assert.assertEquals(Proj_Code,Exep_Proj_Code, "Proj_Code "+Proj_Code+"  name is mismatch");
 		//Assert.assertEquals(Exep_Idea_No, Idea_No,"Idea_No number is mismatch");
 		//Assert.assertEquals(Exep_Idea_Title, Idea_Title,"Idea_Title name is mismatch");
+		 rd.SetGen_Idea_No(2, Idea_No);
 
-		
 		SelectDropdown(EvaluationElem.PRIORITY, rd.ReadEval_Priority(2));
 		SelectDropdown(EvaluationElem.MINOR_IDEA, rd.ReadEval_MinorIdea(2));
 		txtbox(EvaluationElem.COMMENTS, rd.ReadEval_Comment(2));
@@ -57,6 +58,7 @@ public class EvaluationPage extends page {
        // txtbox(EvaluationElem.SOB,rd.ReadEval_ShareOfBusiness(2));
         Recurring(rd.ReadEval_AutoCompute(2), rd.ReadEval_RecurringAnnum(2));
         Thread.sleep(500);
+       
         FindByCssSelector(EvaluationElem.KPI_ADD_BTN).click();
         
         txtbox(EvaluationElem.CUR_METHOD,rd.ReadEval_CurrentMethod(2));
@@ -74,7 +76,10 @@ public class EvaluationPage extends page {
 		String SucessMSG=FindByCssSelector(EvaluationElem.EVAL_SUCCESS).getText().toUpperCase().trim();
 		Thread.sleep(500);
 		Assert.assertEquals(SucessMSG, EvaluationElem.EVAL_SUCCESS_MSG.toUpperCase().trim(), "Evaluation is not Successful");
-		//FindByCssSelector(DashBoardElem.LOGO).click();
+		FindByCssSelector(DashBoardElem.LOGO).click();
+		
+		return new DashBoardPage();
+		
 		
 		
 	
@@ -137,8 +142,12 @@ public class EvaluationPage extends page {
 	    		       System.out.println("Employee_name_2; "+rd.ReadEval_Emp_no_2(i));
 	    		       
 	    		        AutoSuggest(EvaluationElem.EMP_NAME, EvaluationElem.EMP_NAME_AUTO, EvaluationElem.EMP_NAME_AUTO_1, rd.ReadEval_Emp_no(i),rd.ReadEval_Emp_no_1(i),rd.ReadEval_Emp_no_2(i));
+	    		      //  wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(EvaluationElem.SEQ_NO)));
+	    		        Thread.sleep(200);
 	    		        txtbox(EvaluationElem.SEQ_NO, rd.ReadEval_Sequence(i));
+	    		        Thread.sleep(1000);
 	    		        FindByCssSelector(EvaluationElem.EMP_ADD_BTN).click();
+	    		        Thread.sleep(1000);
 	    		       
 	    			
 	    		}

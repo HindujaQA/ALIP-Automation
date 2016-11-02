@@ -21,22 +21,18 @@ public class ObservationPage extends page {
 	
 	ReadData rd= new ReadData();
 	
-	
-	
-	
-	
-	
 	 
-	public void CreateObserv() throws Exception
+	public void CreateObserv(String Exep_Proj_Code,String Exep_Proj_Name,String Exep_Proj_Type) throws Exception
 	{
 		Thread.sleep(500);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(ObservationProjectElem.OBSERVATION_FORM)));
+		Thread.sleep(1500);
 		String Proj_Code=FindByXpath(ObservationProjectElem.OBSERVATION_PROJECT_CODE).getText();
 		String Proj_Name=FindByXpath(ObservationProjectElem.OBSERVATION_PROJECT_NAME).getText();
 		String Proj_Type=FindByXpath(ObservationProjectElem.OBSERVATION_PROJECT_TYPE).getText();
-		String Exep_Proj_Code=rd.ReadProjectCode().toUpperCase().trim();
-		String Exep_Proj_Name=rd.ReadProject_Name().toUpperCase().trim();
-		String Exep_Proj_Type=rd.ReadProjectType().toUpperCase().trim();
+		Exep_Proj_Code=Exep_Proj_Code.toUpperCase().trim();
+		Exep_Proj_Name=Exep_Proj_Name.toUpperCase().trim();
+		Exep_Proj_Type=Exep_Proj_Type.toUpperCase().trim();
 		System.out.println("Proj_Code :"+Proj_Code+" Exep_Proj_Code :"+Exep_Proj_Code);
 		System.out.println("Proj_Name :"+Proj_Name+" Exep_Proj_Name :"+Exep_Proj_Name);
 		System.out.println("Proj_Type :"+Proj_Type+" Exep_Proj_Type :"+Exep_Proj_Type);

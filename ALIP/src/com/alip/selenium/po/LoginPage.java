@@ -27,7 +27,7 @@ public class LoginPage extends page {
 	
 	
 	public DashBoardPage  Login(String USERNAME, String Password) throws InterruptedException{
-		
+		Thread.sleep(500);
 			FindById(LoginElem.USERNAME).clear();
 			FindById(LoginElem.USERNAME).sendKeys(USERNAME);
 		
@@ -35,7 +35,8 @@ public class LoginPage extends page {
 			FindById(LoginElem.PASSWORD).sendKeys(Password);
 
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);	
-		 		 
+		 String color=FindById(LoginElem.LOGINBTN).getCssValue("color") ;
+		 System.out.println(color);
 		 FindById(LoginElem.LOGINBTN).click();
 		 page.wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".sessions-page")));
 		 Thread.sleep(1000);

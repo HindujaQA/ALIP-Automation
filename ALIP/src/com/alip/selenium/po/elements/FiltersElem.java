@@ -21,13 +21,28 @@ public class FiltersElem {
 	public static final String TBL_IDEA_TITLE = ".table-responsive .table .ng-scope >td:nth-child(5)";
 	public static final String TBL_IDEA_TITLE_1 =".table-responsive .table .ng-scope:nth-child(";
 	public static final String TBL_IDEA_TITLE_2 =") >td:nth-child(5)";
-	public static final String TBL_ACTION = ".table-responsive .table .ng-scope >td:nth-child(6";
+	public static final String TBL_ACTION = ".table-responsive .table .ng-scope >td:nth-child(6)";
 	public static final String TBL_ACTION_1 =".table-responsive .table .ng-scope:nth-child(";
-	public static final String TBL_ACTION_2 =") >td:nth-child(6)";
+	public static final String TBL_ACTION_2 =") >td:nth-child(6) [ng-click='showideaDetails(dat);']";
 	public static final String PG_LEFT_FIRST = ".paginationIcons[src='images/first.png']";
 	public static final String PG_LEFT = ".paginationIcons[src='images/prev.png']";
 	public static final String PG_RIGHT_NEXT = ".paginationIcons[src='images/next.png']";
 	public static final String PG_RIGHT = ".paginationIcons[src='images/last.png']";
 	
+	//cAMPAIGN rESULT
+	
+	public static final String CAMPAIGN = "[ng-model='searchStageVal']";
+	public static final String CAMP_PROJ_CODE = ".ng-pristine .col-md-4 .margin-bottom-20.ng-binding:nth-child(2)";
+	public static final String SLT_TABLE = ".table .ng-scope [name='selectedideas[]']";
+	public static final String SLT_ROW = ".table .ng-scope:nth-child(";
+	public static final String SLT_IDEAS = ") [name='selectedideas[]']";
+	public static final String IDEA_TITLE = ") .text-Left-align:nth-of-type(2)";
+	public static final String IDEA_DESC = ") .text-Left-align:nth-of-type(3)";
+	public static final String IDEA_OWNER = ") .text-Left-align:nth-of-type(4)";
+	public static final String IDEA_STATUS = ") .text-Left-align:nth-of-type(5)";
+	public static final String IDEA_ACTION = ") [ng-click='goTocrowdEditingPage(event,dat)'] .display-inlineBlock";
+	public static final String IDEA_MERGE_BTN = ".btn.btn-primary.input-sm[ng-click='mergeIdeas();']";
+	public static final String RELATED_IDEA_BTN = ".btn.btn-primary.input-sm[ng-click='showRelatedIdeas();']";
+	public static final String CREATE_PROJ_BTN = ".btn.btn-primary.input-sm[ng-click='createProject();']";
 	
 }

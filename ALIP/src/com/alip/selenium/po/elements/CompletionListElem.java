@@ -1,0 +1,58 @@
+package com.alip.selenium.po.elements;
+
+public class CompletionListElem {
+	public static final String COMPL_FORM = "#problemReg [name='ideaCompletionForm']";
+	public static final String COMPL_TITLE = ".page-header>h1";
+	public static final String IDEA_NO = "#problemReg .ng-pristine .col-md-12 >div:nth-child(3) >h2";
+	public static final String IDEA_TITLE = "#problemReg .ng-pristine .col-md-12 >div:nth-child(4) >h2";
+	public static final String PJCT_NAME = "#problemReg .ng-pristine .col-md-12 >div:nth-child(6) >h2";
+	public static final String PJCT_CODE = "#problemReg .ng-pristine .col-md-12 >div:nth-child(7) >h2";
+	public static final String PJCT_TYPE = "#problemReg .ng-pristine .col-md-12 >div:nth-child(8) >h2";
+	public static final String IMPL_GRP = "#projectName[ng-model='groupName']";
+	public static final String ACTV_NAME = "#projectName[ng-model='activityName']";
+	public static final String RS_MEM = "#projectName[ng-model='memberName']";
+	public static final String ACT_HRS = "#projectName[ng-model='actualHours']";
+	public static final String ST_DATE = "#datepicker[ng-model='startDate']";
+	public static final String END_DATE = "#datepicker1[ng-model='endDate']";
+	public static final String COMPL_STATUS = "#subCategory[ng-model='implementationStatus']";
+	public static final String COMMENTS = "#projectName[ng-model='comments']";
+	public static final String UPDATE = ".btn.btn-primary.input-sm[ng-click='updateIdea();']";
+	public static final String TBL_IMP_GRP = ".ng-scope:nth-child(1) >td:nth-child(1)";
+	public static final String TBL_IMP_GRP_1 = ".ng-scope:nth-child(";
+	public static final String TBL_IMP_GRP_2 = ") >td:nth-child(1)";
+	public static final String TBL_ACTV_NAME = ".ng-scope:nth-child(1) >td:nth-child(2)";
+	public static final String TBL_ACTV_NAME_1 = ".ng-scope:nth-child(";
+	public static final String TBL_ACTV_NAME_2 = ") >td:nth-child(2)";
+	public static final String TBL_RS_MEM = ".ng-scope:nth-child(1) >td:nth-child(3)";
+	public static final String TBL_RS_MEM_1 = ".ng-scope:nth-child(";
+	public static final String TBL_RS_MEM_2 = ") >td:nth-child(3)";
+	public static final String TBL_ACT_HRS = ".ng-scope:nth-child(1) >td:nth-child(4)";
+	public static final String TBL_ACT_HRS_1 = ".ng-scope:nth-child(";
+	public static final String TBL_ACT_HRS_2 = ") >td:nth-child(4)";
+	public static final String TBL_ACT_ST_DATE = ".ng-scope:nth-child(1) >td:nth-child(5)";
+	public static final String TBL_ACT_ST_DATE_1 = ".ng-scope:nth-child(";
+	public static final String TBL_ACT_ST_DATE_2 = ") >td:nth-child(5)";
+	public static final String TBL_ACT_END_DATE = ".ng-scope:nth-child(1) >td:nth-child(6)";
+	public static final String TBL_ACT_END_DATE_1 = ".ng-scope:nth-child(";
+	public static final String TBL_ACT_END_DATE_2 = ") >td:nth-child(6)";
+	public static final String TBL_COMPL_STATUS = ".ng-scope:nth-child(1) >td:nth-child(7)";
+	public static final String TBL_COMPL_STATUS_1 = ".ng-scope:nth-child(";
+	public static final String TBL_COMPL_STATUS_2 = ") >td:nth-child(7)";
+	public static final String TBL_COMMENTS = ".ng-scope:nth-child(1) >td:nth-child(8)";
+	public static final String TBL_COMMENTS_1 = ".ng-scope:nth-child(";
+	public static final String TBL_COMMENTS_2 = ") >td:nth-child(8)";
+	public static final String TBL_EDIT = ".ng-scope>td>img" ;
+	//public static final String QC_TOOLS = ".btn.btn-small.ng-binding";
+	
+	public static final String QC_TOOL=".ng-scope[dropdown-title='Select QC Tools'] .btn-group .dropdown-toggle";
+    public static final String QC_TOOL_DRPDWN=".ng-scope[dropdown-title='Select QC Tools'] li";
+    public static final String QC_TOOL_DRPDWN_1=".ng-scope[dropdown-title='Select QC Tools'] li:nth-of-type(";
+    public static final String QC_TOOL_DRPDWN_2=")";
+    public static final String QC_TOOL_LIST_CHK=".ng-scope[dropdown-title='Select QC Tools'] li:nth-of-type(";
+    public static final String QC_TOOL_LIST_CHK_1=") .ng-pristine";
+	public static final String SAVE = ".btn.btn-primary.input-sm[data-target='.modal-save']";
+	public static final String SUBMIT = ".btn.btn-primary.input-sm[ng-click='saveBtnClick(1);']";
+	public static final String NEXT = ".btn.btn-primary.input-sm[ng-click='nextBtnClick();']";
+	public static final String SUCCESS_MSG="Idea completed successfully!";
+	public static final String SUCCESS=".alert.alert-success.submit-sucess";
+}

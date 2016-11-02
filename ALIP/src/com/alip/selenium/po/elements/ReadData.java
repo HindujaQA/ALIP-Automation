@@ -21,206 +21,206 @@ public class ReadData extends page {
 				return Password;
 				
 			}
-			public String ReadProjectCode(){
-				String ProjectCode=testExcel.getStringCellData("Registration", 2, "ProjectCode");
+			public String ReadProjectCode(int i){
+				String ProjectCode=testExcel.getStringCellData("Registration", i, "ProjectCode");
 				return ProjectCode;
 				
 			}
-			public String ReadProjectType(){
-				String Project_type=testExcel.getStringCellData("Registration", 2, "Project_type");
+			public String ReadProjectType(int i){
+				String Project_type=testExcel.getStringCellData("Registration", i, "Project_type");
 				return Project_type;
 				
 			}
-			public String Readlocation(){
-				String location=testExcel.getStringCellData("Registration", 2, "location");
+			public String Readlocation(int i){
+				String location=testExcel.getStringCellData("Registration", i, "location");
 				return location;
 				
 			}
-			public String ReadProject_Name(){
-				String Project_Name=testExcel.getStringCellData("Registration", 2, "Project_Name");
+			public String ReadProject_Name(int i){
+				String Project_Name=testExcel.getStringCellData("Registration", i, "Project_Name");
 				return Project_Name;
 				
 			}
-			public String ReadGemba_Unit(){
-				String Gemba_Unit=testExcel.getStringCellData("Registration", 2, "Gemba_Unit");
+			public String ReadGemba_Unit(int i){
+				String Gemba_Unit=testExcel.getStringCellData("Registration", i, "Gemba_Unit");
 				return Gemba_Unit;
 				
 			}
-			public String ReadDescription(){
-				String Description=testExcel.getStringCellData("Registration", 2, "Description");
+			public String ReadDescription(int i){
+				String Description=testExcel.getStringCellData("Registration", i, "Description");
 				return Description;
 				
 			}
-			public String ReadDivision(){
-				String Division=testExcel.getStringCellData("Registration", 2, "Division");
+			public String ReadDivision(int i){
+				String Division=testExcel.getStringCellData("Registration", i, "Division");
 				return Division;
 				
 			}
-			public String ReadQC_Tools(){
-				String QC_Tools=testExcel.getStringCellData("Registration", 2, "QC_Tools");
+			public String ReadQC_Tools(int i){
+				String QC_Tools=testExcel.getStringCellData("Registration", i, "QC_Tools");
 				return QC_Tools;
 				
 			}
-			public String ReadCategory(){
-				String Category=testExcel.getStringCellData("Registration", 2, "Category");
+			public String ReadCategory(int i){
+				String Category=testExcel.getStringCellData("Registration", i, "Category");
 				return Category;
 				
 			}
-			public String ReadSub_Category(){
-				String Sub_Category=testExcel.getStringCellData("Registration", 2, "Sub_Category");
+			public String ReadSub_Category(int i){
+				String Sub_Category=testExcel.getStringCellData("Registration", i, "Sub_Category");
 				return Sub_Category;
 				
 			}
-			public String ReadProject_Planned(){
-				String Project_Planned=testExcel.getStringCellData("Registration", 2, "Project_Planned");
+			public String ReadProject_Planned(int i){
+				String Project_Planned=testExcel.getStringCellData("Registration", i, "Project_Planned");
 				return Project_Planned;
 				
 			}
-			public String ReadProject_Pl_end(){
-				String Project_Pl_end=testExcel.getStringCellData("Registration", 2, "Project_Pl_end");
+			public String ReadProject_Pl_end(int i){
+				String Project_Pl_end=testExcel.getStringCellData("Registration", i, "Project_Pl_end");
 				return Project_Pl_end;
 				
 			}
-			public String Parent_Project(){
-				String Parent_Project=testExcel.getStringCellData("Registration", 2, "Parent_Project");
+			public String Parent_Project(int i){
+				String Parent_Project=testExcel.getStringCellData("Registration", i, "Parent_Project");
 				return Parent_Project;
 				
 			}
 			
-			public String ReadCustomer(){
-				String Customer=testExcel.getStringCellData("Registration", 2, "Customer");
+			public String ReadCustomer(int i){
+				String Customer=testExcel.getStringCellData("Registration", i, "Customer");
 				return Customer;
 				
 			}
 			
-			public String ReadProblem_start_date(){
-				String Problem_start_date=testExcel.getStringCellData("Registration", 2, "Problem_start_date");
+			public String ReadProblem_start_date(int i){
+				String Problem_start_date=testExcel.getStringCellData("Registration", i, "Problem_start_date");
 				return Problem_start_date;
 				
 			}
-			public String ReadProblem_end_date(){
-				String Problem_end_date=testExcel.getStringCellData("Registration", 2, "Problem_end_date");
+			public String ReadProblem_end_date(int i){
+				String Problem_end_date=testExcel.getStringCellData("Registration", i, "Problem_end_date");
 				return Problem_end_date;
 				
 			}
-			public String Readkeywords(){
-				String keywords=testExcel.getStringCellData("Registration", 2, "keywords");
+			public String Readkeywords(int i){
+				String keywords=testExcel.getStringCellData("Registration", i, "keywords");
 				return keywords;
 				
 			}
-			public String ReadGantt_chart_plan(){
-				String Gantt_chart_plan=testExcel.getStringCellData("Registration", 2, "Gantt_chart_plan");
+			public String ReadGantt_chart_plan(int i){
+				String Gantt_chart_plan=testExcel.getStringCellData("Registration", i, "Gantt_chart_plan");
 				return Gantt_chart_plan;
 				
 			}
-			public String ReadReg_Start_date(){
-				String Reg_Start_date=testExcel.getStringCellData("Registration", 2, "Reg_Start_date");
+			public String ReadReg_Start_date(int i){
+				String Reg_Start_date=testExcel.getStringCellData("Registration", i, "Reg_Start_date");
 				return Reg_Start_date;
 			}
-			public String ReadReg_end_date(){
-				String Reg_end_date=testExcel.getStringCellData("Registration", 2, "Reg_end_date");
+			public String ReadReg_end_date(int i){
+				String Reg_end_date=testExcel.getStringCellData("Registration", i, "Reg_end_date");
 				return Reg_end_date;
 				
 			}
-			public String ReadObservation_st_date(){
+			public String ReadObservation_st_date(int i){
 				String Observation_st_date=testExcel.getStringCellData("Registration", 2, "Observation_st_date");
 				return Observation_st_date;
 				
 			}
-			public String ReadObservation_end_date(){
-				String Observation_end_date=testExcel.getStringCellData("Registration", 2, "Observation_end_date");
+			public String ReadObservation_end_date(int i){
+				String Observation_end_date=testExcel.getStringCellData("Registration", i, "Observation_end_date");
 				return Observation_end_date;
 				
 			}
-			public String ReadAnalysis_st_date(){
-				String Analysis_st_date=testExcel.getStringCellData("Registration", 2, "Analysis_st_date");
+			public String ReadAnalysis_st_date(int i){
+				String Analysis_st_date=testExcel.getStringCellData("Registration", i, "Analysis_st_date");
 				return Analysis_st_date;
 				
 			}
-			public String ReadAnalysis_end_date(){
-				String Analysis_end_date=testExcel.getStringCellData("Registration", 2, "Analysis_end_date");
+			public String ReadAnalysis_end_date(int i){
+				String Analysis_end_date=testExcel.getStringCellData("Registration", i, "Analysis_end_date");
 				return Analysis_end_date;
 				
 			}
-			public String ReadAction_Start_date(){
-				String Action_st_date=testExcel.getStringCellData("Registration", 2, "Action_st_date");
+			public String ReadAction_Start_date(int i){
+				String Action_st_date=testExcel.getStringCellData("Registration", i, "Action_st_date");
 				return Action_st_date;
 				
 			}
-			public String ReadAction_end_date(){
-				String Action_end_date=testExcel.getStringCellData("Registration", 2, "Action_end_date");
+			public String ReadAction_end_date(int i){
+				String Action_end_date=testExcel.getStringCellData("Registration", i, "Action_end_date");
 				return Action_end_date;
 				
 			}
 			
-			public String ReadCheck_Start_date(){
-				String Check_Start_date=testExcel.getStringCellData("Registration", 2, "Check_Start_date");
+			public String ReadCheck_Start_date(int i){
+				String Check_Start_date=testExcel.getStringCellData("Registration", i, "Check_Start_date");
 				return Check_Start_date;
 				
 			}
-			public String ReadCheck_end_date(){
-				String Check_end_date=testExcel.getStringCellData("Registration", 2, "Check_end_date");
+			public String ReadCheck_end_date(int i){
+				String Check_end_date=testExcel.getStringCellData("Registration", i, "Check_end_date");
 				return Check_end_date;
 				
 			}
-			public String ReadStd_st_date(){
-				String Std_st_date=testExcel.getStringCellData("Registration", 2, "Std_st_date");
+			public String ReadStd_st_date(int i){
+				String Std_st_date=testExcel.getStringCellData("Registration", i, "Std_st_date");
 				return Std_st_date;
 				
 			}
-			public String ReadStd_end_date(){
-				String Std_end_date=testExcel.getStringCellData("Registration", 2, "Std_end_date");
+			public String ReadStd_end_date(int i){
+				String Std_end_date=testExcel.getStringCellData("Registration", i, "Std_end_date");
 				return Std_end_date;
 				
 			}
-			public String ReadConclude_st_date(){
-				String Conclude_st_date=testExcel.getStringCellData("Registration", 2, "Conclude_st_date");
+			public String ReadConclude_st_date(int i){
+				String Conclude_st_date=testExcel.getStringCellData("Registration", i, "Conclude_st_date");
 				return Conclude_st_date;
 				
 			}
-			public String ReadConclude_end_date(){
-				String Conclude_end_date=testExcel.getStringCellData("Registration", 2, "Conclude_end_date");
+			public String ReadConclude_end_date(int i){
+				String Conclude_end_date=testExcel.getStringCellData("Registration", i, "Conclude_end_date");
 				return Conclude_end_date;
 				
 			}
-			public String ReadKPI_code(){
-				String KPI_code=testExcel.getStringCellData("Registration", 2, "KPI_code");
+			public String ReadKPI_code(int i){
+				String KPI_code=testExcel.getStringCellData("Registration", i, "KPI_code");
 				System.out.println(KPI_code);
 				return KPI_code;
 				
 			}
-			public String ReadKPI_1(){
-				String KPI_code=testExcel.getStringCellData("Registration", 2, "KPI_1");
+			public String ReadKPI_1(int i){
+				String KPI_code=testExcel.getStringCellData("Registration", i, "KPI_1");
 				return KPI_code;
 				
 			}
-			public String ReadKPI_2(){
-				String KPI_code=testExcel.getStringCellData("Registration", 2, "KPI_2");
+			public String ReadKPI_2(int i){
+				String KPI_code=testExcel.getStringCellData("Registration", i, "KPI_2");
 				return KPI_code;
 				
 			}
-			public String ReadBaseline(){
-				String Baseline=testExcel.getStringCellData("Registration", 2, "Baseline");
+			public String ReadBaseline(int i){
+				String Baseline=testExcel.getStringCellData("Registration", i, "Baseline");
 				return Baseline;
 				
 			}
-			public String ReadTarget(){
-				String Target=testExcel.getStringCellData("Registration", 2, "Target");
+			public String ReadTarget(int i){
+				String Target=testExcel.getStringCellData("Registration", i, "Target");
 				return Target;
 				
 			}
-			public String ReadKPI_Name(){
-				String KPI_Name=testExcel.getStringCellData("Registration", 2, "KPI_Name");
+			public String ReadKPI_Name(int i){
+				String KPI_Name=testExcel.getStringCellData("Registration", i, "KPI_Name");
 				return KPI_Name;
 				
 			}
-			public String ReadUOM(){
-				String UOM=testExcel.getStringCellData("Registration", 2, "UOM");
+			public String ReadUOM(int i){
+				String UOM=testExcel.getStringCellData("Registration", i, "UOM");
 				return UOM;
 				
 			}
-			public String ReadAspiration(){
-				String Aspiration=testExcel.getStringCellData("Registration", 2, "Aspiration");
+			public String ReadAspiration(int i){
+				String Aspiration=testExcel.getStringCellData("Registration", i, "Aspiration");
 				return Aspiration;
 				
 			}
@@ -250,7 +250,7 @@ public class ReadData extends page {
 				return RoleProject;
 				
 			}
-			public String ReadGrade(){
+			public String ReadGrade(int i){
 				String Grade=testExcel.getStringCellData("Registration", 2, "Grade");
 				return Grade;
 				
@@ -371,6 +371,7 @@ public class ReadData extends page {
 					return Idea_No;
 					
 				}
+				
 				public String ReadGen_Idea_Classifier(int i){
 					String Idea_Classifier=testExcel.getStringCellData("Generation", i, "Idea_Classifier");
 					return Idea_Classifier;
@@ -433,6 +434,7 @@ public class ReadData extends page {
 					
 					
 				}
+				
 					
 				
 //Evaluation
@@ -581,6 +583,11 @@ public class ReadData extends page {
 					return Emp_no;
 					
 				}
+				public String ReadEval_Emp_name(int i){
+					String EmpName =testExcel.getStringCellData("Eval_EmpSeq", i, "EmpName");
+					return EmpName ;
+					
+				}
 				
 				public String ReadEval_Emp_no_1(int i){
 					String Emp_no_1=testExcel.getStringCellData("Eval_EmpSeq", i, "Emp_no_1");
@@ -601,5 +608,96 @@ public class ReadData extends page {
 				}
 				
 				
+				//Idea SignOFF
+				
+				public String ReadIdea_ExpStatus(int i){
+					String ExpStatus=testExcel.getStringCellData("IdeaSignOff", i, "ExpStatus");
+					return ExpStatus;
+				}
+					
+					public String ReadIdea_Comments(int i){
+						String Comments=testExcel.getStringCellData("IdeaSignOff", i, "Comments");
+						return Comments;
+					}
+						
+						public String ReadIdea_Acceptance(int i){
+							String Acceptance=testExcel.getStringCellData("IdeaSignOff", i, "Acceptance");
+							return Acceptance;
+						}
+							
+							
+							public String ReadIdea_Risk(int i){
+								String Risk=testExcel.getStringCellData("IdeaSignOff", i, "Risk");
+								return Risk;
+							}
+					
+			//Under Implementation
+							
+
+							public String ReadImpl_ImplGroup(int i){
+								String ImplGroup=testExcel.getStringCellData("Implement", i, "ImplGroup");
+								return ImplGroup;
+							}
+							public String ReadImpl_ActivityName(int i){
+								String ActivityName=testExcel.getStringCellData("Implement", i, "ActivityName");
+								return ActivityName;
+							}
+							public String ReadImpl_Exp_RS_MEM(int i){
+								String Exp_RS_MEM=testExcel.getStringCellData("Implement", i, "Exp_RS_MEM");
+								return Exp_RS_MEM;
+							}
+										
+							public String ReadImpl_Exp_RS_MEM_1(int i){
+								String Exp_RS_MEM_1=testExcel.getStringCellData("Implement", i, "Exp_RS_MEM_1");
+								return Exp_RS_MEM_1;
+							}
+									
+							public String ReadImpl_Exp_RS_MEM_2(int i){
+								String Exp_RS_MEM_2=testExcel.getStringCellData("Implement", i, "Exp_RS_MEM_2");
+								return Exp_RS_MEM_2;
+							}
+								
+							public String ReadImpl_EstimatedHrs(int i){
+								String EstimatedHrs=testExcel.getStringCellData("Implement", i, "EstimatedHrs");
+								return EstimatedHrs;
+							}
+							public String ReadImpl_Proj_Plan_Startdt(int i){
+								String Proj_Plan_Startdt=testExcel.getStringCellData("Implement", i, "Proj_Plan_Startdt");
+								return Proj_Plan_Startdt;
+							}
+							public String ReadImpl_Proj_Plan_Enddt(int i){
+								String Proj_Plan_Enddt=testExcel.getStringCellData("Implement", i, "Proj_Plan_Enddt");
+								return Proj_Plan_Enddt;
+							}
+							public String ReadImpl_Instruction(int i){
+								String Instruction=testExcel.getStringCellData("Implement", i, "Instruction");
+								return Instruction;
+							}
+							public String ReadImpl_Predecessor(int i){
+								String Predecessor=testExcel.getStringCellData("Implement", i, "Predecessor");
+								return Predecessor;
+							}
+							public String ReadImpl_TempName(int i){
+								String TempName=testExcel.getStringCellData("Implement", i, "TempName");
+								return TempName;
+							}
+							
+				//Action Toll
+							public String ReadAct_RYG(int i){
+								String RYG=testExcel.getStringCellData("ActionToll", i, "RYG");
+								return RYG;
+								
+							}
+							public String ReadAct_Remarks(int i){
+								String Remarks=testExcel.getStringCellData("ActionToll", i, "Remarks");
+								return Remarks;
+								
+							}
+							public String ReadAct_Milestones(int i){
+								String Milestones=testExcel.getStringCellData("ActionToll", i, "Milestones");
+								return Milestones;
+								
+							}
+							
 			
 }

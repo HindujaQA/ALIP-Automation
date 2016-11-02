@@ -3,6 +3,7 @@ package com.alip.selenium.po.elements;
 public class CreateProjectElem {
 	public static final String REG_PAGE="#problemReg";
 	public static final String PROB_TXT="//div[@id='problemReg']/div/h1";
+	public static final String PROB_TXT_VAL="Problem";
 	public static final String REG_TXT="//div[@id='problemReg']/div/h2";
     public static final String PROJ_TYPE=".ng-pristine:first-of-type .col-md-12 .margin-bottom-20.ng-binding";
     public static final String PROJ_CODE=".//*[@id='problemReg']/form[1]/div[1]/div[4]/h2";
@@ -26,7 +27,8 @@ public class CreateProjectElem {
     public static final String PROBLEM_START_DATE="#datepicker3[ng-model='prob_reg_plannedStartDate']";
     public static final String PROBLEM_END_DATE="#datepicker4[ng-model='prob_reg_plannedEndDate']";
     public static final String KEYWORDS="#Description[ng-model='prob_reg_Keywords']";
-    public static final String GANTT_CHART_PLAN=".chart.col-md-5.col-lg-5.col-sm-3.col-xs-3.margin-top-15";
+    public static final String GANTT_CHART_PLAN=".chart_section .chart";
+    public static final String TBL_HDR_GANTT_CHART_PLAN="#problemSubMenu1 .page-header.margin-top-15>h1";
     public static final String REG_START_DATE="#datepicker11[ng-model='ganttStartDate[$index+1]']";
     public static final String REG_END_DATE="#datepicker12[ng-model='ganttEndDate[$index+1]']";
     public static final String OBSER_ST_DATE="#datepicker21[ng-model='ganttStartDate[$index+1]']";
@@ -46,7 +48,7 @@ public class CreateProjectElem {
     public static final String KPICODE=".ng-valid-required[placeholder='Type KPI code / KPI Name / UOM']";
     public static final String KPICODE_AUTO=".ng-valid-required .autocomplete .ng-binding.ng-scope";
     public static final String KPICODE_AUTO_1=".ng-valid-required .autocomplete .ng-binding.ng-scope:nth-of-type(";
-
+    public static final String KPICODE_EDIT=".table .ng-scope >td [ng-click='editItem($index,dat);']";
     public static final String BASELINE="#numberValidate[ng-model='baselinevalue']";
     public static final String TARGET="#projectName[ng-model='targetvalue']";
     public static final String KPI_ADD=".btn.btn-primary.input-sm.KPI-add-btn.addBtn";
@@ -62,7 +64,9 @@ public class CreateProjectElem {
     public static final String SUBMIT=".btn-primary[data-target='.modal-submit']";
     public static final String S_NO="#KPI_table .ng-scope:nth-of-type(1) >td:nth-of-type(1)";
     public static final String SUBMIT_SUCESS_MSG=".submit-sucess";
+    public static final String NEXTBTN="#problemReg .NextpageBtn[ng-show='showNextBtn'] .btn";
     public static final String SUCESS_MSG="Problem submitted successfully!";
+    public static final String SAVE_MSG="Problem Saved successfully!";
     public static final String KPI_CODE="#KPI_table .ng-scope:nth-of-type(1) >td:nth-of-type(2)";
     public static final String KPI_CODE_AUTO="#KPI_table .ng-scope:nth-of-type(1) >td:nth-of-type(2)";
     public static final String KPI_NAME="#KPI_table .ng-scope:nth-of-type(1) >td:nth-of-type(3)";
@@ -71,6 +75,7 @@ public class CreateProjectElem {
     public static final String ASPIRATION="#KPI_table .ng-scope:nth-of-type(1) >td:nth-of-type(6)";
     public static final String EMP_NAME_AUTO=".autoCompleteInput[ng-model='employeeVal'] .autocomplete .ng-binding.ng-scope";
     public static final String EMP_NAME_AUTO_1=".autoCompleteInput[ng-model='employeeVal'] .autocomplete .ng-binding.ng-scope:nth-of-type(";
+    
     public static final String PROJECT_OWNER_ICON=".popover1";
     public static final String PROJECT_OWNER=".popover-content .facilitatorCont>td:nth-child(1)";
     public static final String PROJECT_OWNER_ID=".popover-content .facilitatorCont>td:nth-child(2)";
@@ -86,4 +91,9 @@ public class CreateProjectElem {
     public static final String MODERATION_SUBMIT=".btn.btn-primary.input-sm[ng-click='saveBtnClick(1);']";
     public static final String MODERATION_SUBMIT_MSG=".alert.alert-success.submit-sucess";
     public static final String MODERATION_SUBMIT_MSG_TXT="Problem Moderated successfully!";
+    public static final String BTN_GENERATION=".btn[ng-click='generationBtnClick();']";
+    public static final String BTN_CAMPAIGN="[ng-show='showCampaignBtn'] .btn[ng-click='nextBtnClick();']";
+    
+    
+    
 }

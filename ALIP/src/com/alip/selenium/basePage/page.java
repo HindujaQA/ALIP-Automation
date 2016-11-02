@@ -32,6 +32,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
+import com.alip.selenium.po.DashBoardPage;
+import com.alip.selenium.po.LoginPage;
 import com.alip.selenium.po.elements.CreateProjectElem;
 import com.alip.selenium.po.elements.DashBoardElem;
 import com.alip.selenium.po.elements.LoginElem;
@@ -52,6 +54,7 @@ public class page extends TestScriptListener {
 	public static Alert alert;
 	public static String pageTitle ="";
 	public static boolean LoggedIn = false;
+	//public static JavascriptExecutor jse = (JavascriptExecutor)driver;
 	
 	//public ReadData rd= new ReadData();
 	
@@ -84,7 +87,7 @@ public class page extends TestScriptListener {
 			if (CONFG.getProperty("BROWSER").trim().toUpperCase().equals("FIREFOX"))
 				driver = new FirefoxDriver();
 			else if (CONFG.getProperty("BROWSER").trim().toUpperCase().equals("CHROME")){
-				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\chromedriver_win32_2.7\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\chromedriver_win32_2.7\\chromedriver_win32_2.25.exe");
 				driver = new ChromeDriver();
 			}
 			else if (CONFG.getProperty("BROWSER").trim().toUpperCase().equals("IE")){
@@ -1304,6 +1307,7 @@ public class page extends TestScriptListener {
 		}
 		
 		
+		
 	public void MovetoElement(String Menu ,String Submenu ){
 		try{
 			WebElement element = FindByLink( Menu);
@@ -1352,8 +1356,8 @@ public class page extends TestScriptListener {
 		            for (int i=1;i<=drpDown_CNT;i++){
 		                
 		                String drpDown_Val= FindByCssSelector(ElemDropDown_1+i+CreateProjectElem.QC_TOOL_DRPDWN_2).getText();
-		                drpDown_Val=drpDown_Val.replaceAll("[^A-Za-z]", "").toUpperCase();
-		                drpDownExep_Val[j]=drpDownExep_Val[j].replaceAll("[^A-Za-z]", "").toUpperCase();
+		                drpDown_Val=drpDown_Val.replaceAll("[^A-Za-z0-9]", "").toUpperCase();
+		                drpDownExep_Val[j]=drpDownExep_Val[j].replaceAll("[^A-Za-z0-9]", "").toUpperCase();
 		                System.out.println("drpDown_Val "+drpDown_Val+ "drpDownExep_Val"+drpDownExep_Val[j]);
 		                
 		                
@@ -1370,7 +1374,7 @@ public class page extends TestScriptListener {
 			
 			public void txtbox(String Elemloc,String txt)
 			{
-				
+				FindByCssSelector(Elemloc).clear();
 				FindByCssSelector(Elemloc).sendKeys(txt);
 			}
 		    
@@ -1394,12 +1398,13 @@ public class page extends TestScriptListener {
 		    	wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(Locator)));
 		    	FindByCssSelector(Locator).clear();
 		    	FindByCssSelector(Locator).click();
+		    	Thread.sleep(500);
 		        FindByCssSelector(Locator).sendKeys(Exp_Value_1);
 		        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(ValLocator)));
-		        page.driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		        Thread.sleep(1000);
 		    	
 		        FindByCssSelector(Locator).sendKeys(Exp_Value_2);
-		        page.driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
+		       Thread.sleep(1000);
 		        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(ValLocator)));
 		        
 		    	
@@ -1431,8 +1436,10 @@ public class page extends TestScriptListener {
 		        WebElement element = FindByCssSelector(Locator);
 		        jse.executeScript("arguments[0].scrollIntoView();", element);
 		    }
-		    public void Logout(){
-			   wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.HEADERICON)));   
+		    
+		    public void Logout() throws InterruptedException{
+			   wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.HEADERICON))); 
+			   Thread.sleep(500);
 			   FindByCssSelector(DashBoardElem.HEADERICON).click();
 			   wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.LOGOUT)));   
 			   FindByCssSelector(DashBoardElem.LOGOUT).click();
@@ -1440,6 +1447,32 @@ public class page extends TestScriptListener {
 			   
 		    }
 		    
+		    public LoginPage NavLoginPageByUrl() throws InterruptedException  {
+				Thread.sleep(300);
+				String currentUrl = page.driver.getCurrentUrl();
+				System.out.println("currentUrl:(actual )"+currentUrl);
+				
+					
+					currentUrl = CONFG.getProperty("URL_HOMEPAGE");
+					System.out.println("currentUrl:(in if )"+currentUrl);
+					
+					
+				page.driver.navigate().to(currentUrl);
+				Thread.sleep(1000);
+				
+					
+				return new LoginPage() ;
+				
+			}
+			
+		   
+		    public DashBoardPage NavtoDashboardPage() throws InterruptedException{
+				   wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.IDEAL_LOGO))); 
+				   Thread.sleep(500);
+				   FindByCssSelector(DashBoardElem.IDEAL_LOGO).click();
+				   wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(DashBoardElem.IDEAL_PROJ_STATUS)));   
+				   return new DashBoardPage();
+			    }
 		    
 			public void TollGate(String KeyMiles, String RYG,String Remarks) throws Exception{
 				/*	int RowCnt=testExcel.getRowCount("Role");

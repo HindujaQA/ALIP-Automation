@@ -2,7 +2,7 @@ package com.alip.selenium.po.elements;
 
 public class Evaluation {
 
-	public static final String EVAL_TITLE = "#problemReg .page-header:nth-child(1)";
+	/*public static final String EVAL_TITLE = "#problemReg .page-header:nth-child(1)";
 	public static final String IDEA_NO = "#problemReg >form >div >div:nth-child(3) >div >h2";
 	public static final String IDEA_TITLE = ".col-md-8 .margin-bottom-20.lg-margin-btm-36";
 	public static final String PJCT_NAME = "#problemReg >form >div >div:nth-child(5) >div >h2";
@@ -78,5 +78,5 @@ public class Evaluation {
 	public static final String SUBMIT = ".submitBtn[ng-show='showSubmitBtn']";
 	public static final String NEXT = ".NextpageBtn[ng-show='showNextBtn']";
 	
-	
+	*/
 }

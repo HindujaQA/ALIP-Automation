@@ -6,7 +6,7 @@ public class ProblemApprovalElem {
 	public static final String PENDING_APPROVAL = "pending for sponsor approval";
 	public static final String FILTER_BTN = ".btn[ng-click='filterData();']";
 	public static final String PROJECT_TAB = "#projectListTable .ng-scope";
-	
+	public static final String FIL_PROJECT_CODE = "#projectName[ng-model='filterprojectCode']";
 	public static final String PROJECT_CODE = "#projectListTable .ng-scope .text-Left-align:nth-child(1)";
 	public static final String PROJECT_1 = "#projectListTable .ng-scope:nth-child(";
 	public static final String PROJECT_CODE_1 = ") .text-Left-align:nth-child(1)";
